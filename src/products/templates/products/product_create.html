@@ -2,13 +2,12 @@
 
 {% block content %}
 
-
 <form action='.' method='POST'>{% csrf_token %}
     {{ form.as_p }}
     <input type='submit' value='Save' />
+    {% comment %} <button onclick="location.href = 'http://127.0.0.1:8000/products/';" id="myButton" class="float-left submit-button" >Back</button> {% endcomment %}
 </form>
-
-
+<button onclick="location.href = 'http://127.0.0.1:8000/products/';" id="myButton" class="float-left submit-button" >Back</button>
 
 
 {% endblock %}

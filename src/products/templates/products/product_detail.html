@@ -4,4 +4,7 @@
 <h1>{{ object.title }}</h1>
 <p>{{ object.description }}</p>
 <p>{{ object.price }}</p>
+<button onclick="location.href = 'http://127.0.0.1:8000/products/{{ object.id }}/update/';" id="myButton" class="float-left submit-button" >Update</button>
+<button onclick="location.href = 'http://127.0.0.1:8000/products/{{ object.id }}/delete/';" id="myButton" class="float-left submit-button" >Delete</button>
+<button onclick="location.href = 'http://127.0.0.1:8000/products/';" id="myButton" class="float-left submit-button" >Back</button>
 {% endblock %}
