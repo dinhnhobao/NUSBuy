@@ -2,12 +2,27 @@
 
 {% block content %}
 
+<style>
+.button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+</style>
+
 <form action='.' method='POST'>{% csrf_token %}
     {{ form.as_p }}
-    <input type='submit' value='Save' />
+    <input type='submit' value='Save' class ='button'/>
     {% comment %} <button onclick="location.href = 'http://127.0.0.1:8000/products/';" id="myButton" class="float-left submit-button" >Back</button> {% endcomment %}
 </form>
-<button onclick="location.href = 'http://127.0.0.1:8000/products/';" id="myButton" class="float-left submit-button" >Back</button>
+<button onclick="location.href = 'http://127.0.0.1:8000/products/';" id="myButton" class="button" >Back</button>
 
 
 {% endblock %}

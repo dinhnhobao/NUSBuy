@@ -1,10 +1,70 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{ object.title }}</h1>
+<style>
+.item1 { grid-area: header; }
+.item2 { grid-area: description; }
+.item3 { grid-area: price; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header description description description description description description description description '
+    'header header header description description description description description description description description'
+    'header header header description description description description description description description description'
+    'header header header description description description description description description description description'
+    'header header header price price price price price price price price';
+  grid-gap: 0px;
+  background-color: powderblue;
+  padding: 0px;
+}
+
+.grid-container > div {
+  background-color: powderblue;
+  text-align: left;
+  padding: 60px;
+  font-size: 10px;
+  font-family: sans-serif;
+  color: black
+}
+
+.button {
+          background-color: black;
+          border: none;
+          color: white;
+          padding: 8px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 14px;
+          margin: 4px 2px;
+          cursor: pointer;
+}
+
+h1 {
+    color: black;
+    /* tuong tu rgb co alpha la do mo mau */
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 50px;
+}
+</style>
+
+<div class="grid-container">
+  <div class="item1"><h1>{{ object.title }}</h1></div>
+  <div class="item2">Description: {{ object.description }}</div>
+  <div class="item3">Price: {{ object.price }}</div>  
+  <button onclick="location.href = 'http://127.0.0.1:8000/products/{{ object.id }}/update/';" id="myButton" class="button" >Update</button>
+  <button onclick="location.href = 'http://127.0.0.1:8000/products/{{ object.id }}/delete/';" id="myButton" class="button" >Delete</button>
+  <button onclick="location.href = 'http://127.0.0.1:8000/products/';" id="myButton" class="button" >Back</button>
+</div>
+<br> 
+
+{% comment %} <h1>{{ object.title }}</h1>
 <p>{{ object.description }}</p>
-<p>{{ object.price }}</p>
-<button onclick="location.href = 'http://127.0.0.1:8000/products/{{ object.id }}/update/';" id="myButton" class="float-left submit-button" >Update</button>
+<p>{{ object.price }}</p> {% endcomment %}
+
+{% comment %} <button onclick="location.href = 'http://127.0.0.1:8000/products/{{ object.id }}/update/';" id="myButton" class="float-left submit-button" >Update</button>
 <button onclick="location.href = 'http://127.0.0.1:8000/products/{{ object.id }}/delete/';" id="myButton" class="float-left submit-button" >Delete</button>
-<button onclick="location.href = 'http://127.0.0.1:8000/products/';" id="myButton" class="float-left submit-button" >Back</button>
+<button onclick="location.href = 'http://127.0.0.1:8000/products/';" id="myButton" class="float-left submit-button" >Back</button> {% endcomment %}
 {% endblock %}

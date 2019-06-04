@@ -2,10 +2,48 @@
 
 {% block content %}
      
-     
-{% for instance in object_list %}
-     <p>{{ instance.id }} - <a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</a></p>
-{% endfor %}
-     <button onclick="location.href = 'http://127.0.0.1:8000/products/create/';" id="myButton" class="float-left submit-button" >Create</button>
+<style>
+     table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+     }
+     th, td {
+          padding: 5px;
+          text-align: center;
+          font-size: 14px;
+          font-family: sans-serif;
+          background-color: orange;
+          color: white;
+     }
+     .button {
+          background-color: black;
+          border: none;
+          color: white;
+          padding: 8px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 14px;
+          margin: 4px 2px;
+          cursor: pointer;
+     }
+</style>
+
+     {% comment %} <div class="grid-item">{{ instance.id }}</div>
+     <div class="grid-item"><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</div> {% endcomment %}
+<table style="width:100%">
+     <tr>
+          <th>Product IDs</th>
+          <th>Product names</th>
+     </tr>
+     {% for instance in object_list %}
+          <tr>
+               <td>{{ instance.id }}</td>
+               <td><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</td>
+          </tr>
+     {% endfor %}
+</table>
+
+<button onclick="location.href = 'http://127.0.0.1:8000/products/create/';" id="myButton" class="button" >Create</button>
      
 {% endblock %}
