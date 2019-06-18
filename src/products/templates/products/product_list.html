@@ -3,7 +3,7 @@
 {% block content %}
      
 <style>
-     table, th, td {
+     {% comment %} table, th, td {
           border: 1px solid black;
           border-collapse: collapse;
      }
@@ -26,12 +26,98 @@
           font-size: 14px;
           margin: 4px 2px;
           cursor: pointer;
+     } {% endcomment %}
+     div.products {
+          width: 100%; display: table; margin: auto;
+     }
+
+     div.products h3{
+          float: left;color: black;
+          background: orange;
+          margin: 0px; line-height: 41 px;
+          text-indent: 40 px;
+          font-weight: normal; font-size: 22px;
+          margin-left: 5%
+     }
+
+     div.products ul,
+     div.products ul li{
+          float: left; padding: 0px; margin: 0px; list-style: none; 
+     }
+     div.products ul li{
+          width:90%; margin-left: 5%;
+     }
+     div.products ul{
+          width: 100%;
+          margin-top: 20px;
+     }
+     div.products ul li{
+          width: 25%;
+          margin-bottom: 30px;
+     }
+     div.product {
+          float: left; width:240px;
+          background-color:white;
+          border-bottom: #d3654c 1px solid;
+          position: relative;
+     }
+     div.product a{
+          float: left;width: 100%;
+          text-allign: center;
+     }
+     div.product a.img{
+          margin-top: 10px;
+     }
+     div.product a.img img{
+          height:170px;
+          width: 240px;
+          border-bottom: #d3654c 5px solid;
+     }
+     div.product a.name{
+          font-weight: bolder;
+          color: black;
+          font-size: 13px;
+          text-decoration: none; margin-top: 10 px;
+     }
+     div.product a.name:hover{
+          color: #d3654c;
+     }
+     div.product div{
+          font-size: 18px; font-weight: bold; color: #d3654c;
+          text-indent: 10px;
+          margin: 10px 0 10px 0;
+          float: left; width: 100%;
+     }
+     div.product a.cart{
+          border-top: #d3654c 1px solid;
+          background: #f2f2f2 30% 2px no-repeat;
+          line-height: 30px;
+          font-weight: bold; color: #d3654c;
+          text-decoration: none;
+     }
+     div.product a.cart:hover{
+          background-color: #d3654c; color: white;
+     }
+     div.product span {
+          position: absolute; top: 0px; left: 0px;
+          width: 60px; height: 60px; line-height: 60px;
+          text-allign: center;
+          background-color: rgba(255,255,255,0.4);
+          border-radius: 30px;
+          font-size: 20px; font-weight: bold;
+          text-shadow: 0 0 3px yellow;
+     }
+     div.product: hover span{
+          background-color: #d3654c;
+     }
+     div.product: hover a.img img{
+          capacity: 0.7;
      }
 </style>
 
      {% comment %} <div class="grid-item">{{ instance.id }}</div>
      <div class="grid-item"><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</div> {% endcomment %}
-<table style="width:100%">
+{% comment %} <table style="width:100%">
      <tr>
           <th>Product IDs</th>
           <th>Product names</th>
@@ -42,8 +128,25 @@
                <td><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</td>
           </tr>
      {% endfor %}
-</table>
+</table> {% endcomment %}
 
+<div class="products">
+     <h3>ALL PRODUCTS</h3>
+     <ul>
+          {% for instance in object_list %}
+          <li>
+               <div class="product">
+                    <a href="#" class="img"><img  src="https://ph-test-11.slatic.net/p/21247414f3f0f0dca695c5963fb4db60.jpg"/></a>
+                    <a href='{{ instance.get_absolute_url }}' class="name">{{ instance.title }}</a>
+                    <div>{{ instance.price }}</div>
+                    <a href="#" class="cart">Add to cart</a>
+                    <span>{{ instance.id }}</span>
+               </div>
+          </li>
+          {% endfor %}
+     </ul>
+</div>
+<br>
 <button onclick="location.href = 'http://127.0.0.1:8000/products/create/';" id="myButton" class="button" >Create</button>
      
 {% endblock %}
