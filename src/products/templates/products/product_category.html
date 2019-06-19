@@ -28,7 +28,9 @@
           cursor: pointer;
      }
 </style>
-
+    <div>
+    <h5> Product listings in {{ this_category.name }} category </h5>
+    </div>
      {% comment %} <div class="grid-item">{{ instance.id }}</div>
      <div class="grid-item"><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</div> {% endcomment %}
 <table style="width:100%">
@@ -37,18 +39,14 @@
           <th>Column 2</th>
           <!-- ví dụ: instance.price_in_SGD-->
      </tr>
-     {% for instance in posts %}
-          <h3>
-               id: {{ instance.id }} 
-               price: {{ instance.price_in_SGD }}
-               title: {{ instance.title }}
-               image_link: {{ instance.image_link_1 }}
-               pub_date: {{ instance.pub_date }}
-               view_count: {{ instance.view_count }}
-               category: {{ instance.category }}
-               Posts with similar category:
-               {% url 'product-by-category' instance.category.pk %}
-          </h3>
+     {% for instance in product_list %}
+          <tr>
+               <td>{{ instance.id }} {{ instance.price_in_SGD }}
+                   {{ instance.title }}
+                   {{ instance.image_link_1 }}
+                   {{ instance.pub_date }}
+                   {{ instance.view_count }}</td>
+          </tr>
      
      {% empty %}
             <div>

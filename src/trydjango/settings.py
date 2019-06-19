@@ -37,12 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     # third party
-
+    'django.contrib.sites',
+    'category',
+    
     # own
-    'blog',
-    'courses',
     'pages',
     'products',
 ]
@@ -113,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Singapore'
 
 USE_I18N = True
 
@@ -130,3 +129,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, '/')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home' #if we enter 'home', it will redirect to log-in windows
+LOGOUT_REDIRECT_URL = 'home' #after logout will direct to 'home'
+
+SITE_ID = 1

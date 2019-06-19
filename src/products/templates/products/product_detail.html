@@ -43,7 +43,6 @@
 
 h1 {
     color: black;
-    /* tuong tu rgb co alpha la do mo mau */
     font-family: 'Lato', sans-serif;
     font-weight: 900;
     font-size: 50px;
@@ -60,11 +59,28 @@ h1 {
 </div>
 <br> 
 
-{% comment %} <h1>{{ object.title }}</h1>
-<p>{{ object.description }}</p>
-<p>{{ object.price }}</p> {% endcomment %}
+<div class="form">
+  <form action="" method = "post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}            
+    <p><input type="submit" value="Submit"></p> 
+  </form>
+</div>
 
-{% comment %} <button onclick="location.href = 'http://127.0.0.1:8000/products/{{ object.id }}/update/';" id="myButton" class="float-left submit-button" >Update</button>
-<button onclick="location.href = 'http://127.0.0.1:8000/products/{{ object.id }}/delete/';" id="myButton" class="float-left submit-button" >Delete</button>
-<button onclick="location.href = 'http://127.0.0.1:8000/products/';" id="myButton" class="float-left submit-button" >Back</button> {% endcomment %}
+
+<div class="comments-list">
+        {% for each_comment in comments %}
+        <div class="comment">
+            <div class="info">
+                <p>{{ each_comment.author }}<span>   <span>{{ each_comment.created_on }}</span></p>
+                <p>{{ each_comment.comment }}</p>
+            </div>   
+        </div>
+
+        {% empty %}
+            <div>
+                <h3> There are no comments yet. </h3>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
