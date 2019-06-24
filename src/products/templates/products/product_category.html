@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+     
+<style>
+     table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+     }
+     th, td {
+          padding: 5px;
+          text-align: center;
+          font-size: 14px;
+          font-family: sans-serif;
+          background-color: orange;
+          color: white;
+     }
+     .button {
+          background-color: black;
+          border: none;
+          color: white;
+          padding: 8px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 14px;
+          margin: 4px 2px;
+          cursor: pointer;
+     }
+</style>
+    <div>
+    <h5> Product listings in {{ this_category.name }} category </h5>
+    </div>
+     {% comment %} <div class="grid-item">{{ instance.id }}</div>
+     <div class="grid-item"><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</div> {% endcomment %}
+<table style="width:100%">
+     <tr>
+          <th>Column 1</th>
+          <th>Column 2</th>
+          <!-- ví dụ: instance.price_in_SGD-->
+     </tr>
+     {% for instance in product_list %}
+          <tr>
+               <td>{{ instance.id }} {{ instance.price_in_SGD }}
+                   {{ instance.title }}
+                   {{ instance.image_link_1 }}
+                   {{ instance.pub_date }}
+                   {{ instance.view_count }}</td>
+          </tr>
+     
+     {% empty %}
+            <div>
+                <h3> There are no product listings yet. </h3>
+            </div>
+     {% endfor %}
+</table>
+
+<button onclick="location.href = 'http://127.0.0.1:8000/products/create/';" id="myButton" class="button" >Create</button>
+{% include 'products/pagination_links.html' %}
+
+{% endblock %}

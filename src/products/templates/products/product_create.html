@@ -17,11 +17,14 @@
 }
 </style>
 
-<form action='.' method='POST'>{% csrf_token %}
-    {{ form.as_p }}
-    <input type='submit' value='Save' class ='button'/>
-    {% comment %} <button onclick="location.href = 'http://127.0.0.1:8000/products/';" id="myButton" class="float-left submit-button" >Back</button> {% endcomment %}
-</form>
+<div class="form">
+    <form action="" method = 'post' novalidate>
+            {% csrf_token %}
+            {{ form.as_p}} <!-- form as paragraph-->
+            <p><input type="submit" value="Submit"></p> 
+    </form>
+</div>
+
 <button onclick="location.href = 'http://127.0.0.1:8000/products/';" id="myButton" class="button" >Back</button>
 
 

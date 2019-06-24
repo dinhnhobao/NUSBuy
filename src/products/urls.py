@@ -1,18 +1,30 @@
+from django.conf.urls import url
 from django.urls import path
-from .views import (
-    product_create_view, 
-    product_detail_view, 
-    product_delete_view,
-    product_list_view,
-    product_update_view,
-    
-)
+from django.contrib import admin
+from django.contrib.auth import views as auth_views #name for easy differentiation
 
-app_name = 'products'
+from django.views.generic import TemplateView
+
+from products import views
 urlpatterns = [
-    path('', product_list_view, name='product-list'),
-    path('create/', product_create_view, name='product-list'),
-    path('<int:id>/', product_detail_view, name='product-detail'),
-    path('<int:id>/update/', product_update_view, name='product-update'),
-    path('<int:id>/delete/', product_delete_view, name='product-delete'),
+    url(r'^$', views.Home.as_view(), name = 'home'), #remember to use as_view() to render view
+
+    #create C:
+    url(r'^post/create/$', views.PostCreate.as_view(), name = 'product-create'),
+
+    #read R:
+    url(r'^post/(?P<pk>[\d]+)/$', views.PostDetail.as_view(), name = 'product-detail'), #learn regex
+
+    #update U:
+    url(r'^post/(?P<pk>[\d]+)/update/$', views.PostUpdate.as_view(), name = 'product-update'),
+    
+    #delete D:
+    url(r'^post/(?P<pk>[\d]+)/delete/$', views.PostDelete.as_view(), name = 'product-delete'),
+
+    #authentication:
+    url(r'^login/$', auth_views.LoginView.as_view(template_name = 'products/login.html'), name = 'login'),
+    url(r'^logout/$', auth_views.LogoutView.as_view(), name = 'logout'),
+
+    #category:
+    url(r'^post/category/(?P<pk>[\d]+)/$', views.PostCategory.as_view(), name = 'product-by-category'),
 ]

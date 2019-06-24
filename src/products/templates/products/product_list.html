@@ -119,14 +119,27 @@
      <div class="grid-item"><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</div> {% endcomment %}
 {% comment %} <table style="width:100%">
      <tr>
-          <th>Product IDs</th>
-          <th>Product names</th>
+          <th>Column 1</th>
+          <th>Column 2</th>
+          <!-- ví dụ: instance.price_in_SGD-->
      </tr>
-     {% for instance in object_list %}
-          <tr>
-               <td>{{ instance.id }}</td>
-               <td><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</td>
-          </tr>
+     {% for instance in posts %}
+          <h3>
+               id: {{ instance.id }} 
+               price: {{ instance.price_in_SGD }}
+               title: {{ instance.title }}
+               image_link: {{ instance.image_link_1 }}
+               pub_date: {{ instance.pub_date }}
+               view_count: {{ instance.view_count }}
+               category: {{ instance.category }}
+               Posts with similar category:
+               {% url 'product-by-category' instance.category.pk %}
+          </h3>
+     
+     {% empty %}
+            <div>
+                <h3> There are no product listings yet. </h3>
+            </div>
      {% endfor %}
 </table> {% endcomment %}
 
@@ -148,5 +161,6 @@
 </div>
 <br>
 <button onclick="location.href = 'http://127.0.0.1:8000/products/create/';" id="myButton" class="button" >Create</button>
-     
+{% include 'products/pagination_links.html' %}
+
 {% endblock %}
