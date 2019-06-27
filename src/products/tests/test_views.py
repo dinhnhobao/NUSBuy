@@ -16,7 +16,6 @@ class TestViews(TestCase):
         self.user = User.objects.create_user(username='test_user',
                                         password='dq123456')
         self.client.login(username = 'test_user', password = 'dq123456')
-
         clothing_category = Category(name = 'Clothing')
         clothing_category.save() #save the category first
 
