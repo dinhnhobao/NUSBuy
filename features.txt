@@ -24,10 +24,38 @@ Video part 4
 Log-in - log-out views (DONE)
 Restrict access in class-based views (DONE)
 
-**but logic not yet implemented: cannot update/delete posts of another user.
-**authentication completion
+**but logic not yet implemented: cannot update/delete posts of another user. (DONE)
+**authentication completion 
 Video part 5
 List posts by category (DONE)
 
 Video part 6
 DONE
+----------------------------------------------------------------------------
+**but logic not yet implemented: cannot update/delete posts of another user.
+**authentication completion
+----------------------------------------------------------------------------
+Feedback from Milestone 1:
+
+i) Conversations between buyers and sellers. How to store this?***
+ii) why website/mobile app?
+iii) Scalability
+iv) Data security
+iv) Payment gateway: Singtel Dash or DBSPaylah.
+For Payment Gateway, would this introduce a new e-money wallet? 
+Would it be more troublesome for users to manage them? 
+--->Would it be easier if users paid 
+each other on the spot using existing apps like Paylah or PayNow? <---
+
+v)
+make video quality better as it is quite blurry. 
+
+vi) OpenID** ** **
+vii)Maps
+
+You guys will have to make it more appealing, more features 
+and give reasons why NUS students will prefer your app over Carousel.
+
+
+1) Share a product listing on social media platforms
+2) Ratings feature 

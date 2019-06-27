@@ -28,6 +28,36 @@
           cursor: pointer;
      }
 </style>
+<form class="form-inline my-2 my-lg-2">
+     <input 
+          class="form-control mr-sm-2" 
+          type="search" 
+          placeholder="Search" 
+          aria-label="Search"
+          name = 'search'
+          value = '{{ search_term }}'> <!-- add the input text to url-->
+     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+
+
+<a href = "{% url 'product-create' %}" class = "float-left"><i class="fas fa-plus-square"></i></a>
+<a
+     href="?title=True"
+     class="btn btn-{% if 'title' in request.GET %}warning{% else %}primary{% endif %}"
+     style="margin-bottom: 5px">Sort by name
+</a>
+      
+<a
+     href="?pub_date=True"
+     class="btn btn-{% if 'pub_date' in request.GET %}warning{% else %}primary{% endif %}"
+     style="margin-bottom: 5px">Sort by publish date
+</a>
+
+<a
+     href="?view_count=True"
+     class="btn btn-{% if 'view_count' in request.GET %}warning{% else %}primary{% endif %}"
+     style="margin-bottom: 5px">Sort by view count
+</a>
 
      {% comment %} <div class="grid-item">{{ instance.id }}</div>
      <div class="grid-item"><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</div> {% endcomment %}
@@ -37,27 +67,52 @@
           <th>Column 2</th>
           <!-- ví dụ: instance.price_in_SGD-->
      </tr>
-     {% for instance in posts %}
+     <ul class = 'list-group'>
+     {% for post in posts %}
+          <li class = 'list-group-item'>
+               <a href = "{% url 'product-detail' post.id %}" >{{ post }} </a>
+          </li>
+
           <h3>
-               id: {{ instance.id }} 
-               price: {{ instance.price_in_SGD }}
-               title: {{ instance.title }}
-               image_link: {{ instance.image_link_1 }}
-               pub_date: {{ instance.pub_date }}
-               view_count: {{ instance.view_count }}
-               category: {{ instance.category }}
+               id: {{ post.id }} 
+               price: {{ post.price_in_SGD }}
+               title: {{ post.title }}
+               image_link: {{ post.image_link_1 }}
+               pub_date: {{ post.pub_date }}
+               view_count: {{ post.view_count }}
+               category: {{ post.category }}
                Posts with similar category:
-               {% url 'product-by-category' instance.category.pk %}
+               {% url 'product-by-category' post.category.pk %}
           </h3>
-     
+     </ul>
      {% empty %}
             <div>
                 <h3> There are no product listings yet. </h3>
             </div>
      {% endfor %}
+
+
 </table>
 
-<button onclick="location.href = 'http://127.0.0.1:8000/products/create/';" id="myButton" class="button" >Create</button>
-{% include 'products/pagination_links.html' %}
+<!--{% include 'products/pagination_links.html' %} -->
+<div class="pagination">
+    <span class="step-links">
+        {% if posts.has_previous %}
+          <a href="?page=1&{{params}}">&laquo; first</a> <!-- params: preserving query parameters when using Paginator-->
+          <a href="?page={{ posts.previous_page_number }}&{{params}}">previous</a>
+        {% endif %}
+
+        <span class="current">
+          Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+        </span>
+
+        {% if posts.has_next %}
+          <a href="?page={{ posts.next_page_number }}&{{params}}">next</a>
+          <a href="?page={{ posts.paginator.num_pages }}&{{params}}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
 
 {% endblock %}

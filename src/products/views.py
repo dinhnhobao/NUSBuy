@@ -21,7 +21,9 @@ from .forms import ProductForm, CommentForm
 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+from .permissions import IsOwnerOrReadOnly
 @method_decorator(login_required, name = 'dispatch') #dispatch: find get/post method, restrict
 class PostCreate(View):
     def get(self, request): #get the information in the form
@@ -30,19 +32,26 @@ class PostCreate(View):
 
     def post(self, request): #create a post
         form = ProductForm(request.POST)
+        form.author = request.user #set author as the user
         if form.is_valid():
             form.save() #save the form
             return redirect(reverse('home')) #redirect to home
         #else:   
         return render(request, 'products/product_create.html', {'form': form}) #stay at the same page
 
-@method_decorator(login_required, name = 'dispatch') 
-class PostUpdate(UpdateView):
-    model = Product
-    fields = ('image_link_1', 'image_link_2','image_link_3','image_link_4',
-            'price_in_SGD', 'description', 'delivery_location', 'extra_information')
-    template_name = 'products/product_create.html'
+@login_required
+def product_update(request, id = id):
+    product = get_object_or_404(Product, id = id)
+    if product.author != request.user:
+        return redirect(reverse('home')) #not authorised
 
+    form = ProductForm(request.POST or None, instance= product)
+    if form.is_valid():
+        form.save()
+    context = {
+        'form': form
+    }
+    return render(request, "products/product_create.html", context)
 class PageContextMixin():
     page_title = None #attribute to be overwritten
 
@@ -51,15 +60,39 @@ class PageContextMixin():
         context['page_title'] = self.page_title #add the page_title attribute to the context
         return context
         
-class Home(PageContextMixin, ListView): #Mixin should always come before ListView
-    model = Product
-    template_name = 'products/product_list.html'
-    context_object_name = 'posts'
-    ordering = '-view_count' #sort by ...
-    paginate_by = 3 #number of listings per page, use products/pagination_links.html
-    page_title = 'NUSBuy - Listings' #overwrite PageContextMixin's page_title
+def products_list(request):
+    """
+    Renders the polls_list.html template which lists all the
+    currently available polls
+    """
+    products = Product.objects.get_queryset().order_by('id')
+    search_term = '' #initialisation
+    if 'title' in request.GET:
+        products = products.order_by('title')
 
-@method_decorator(login_required, name = 'dispatch') 
+    if 'pub_date' in request.GET:
+        products = products.order_by('-pub_date')
+
+    if 'view_count' in request.GET:
+        products = products.order_by('-view_count')
+
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        products = products.filter(title__icontains=search_term)
+
+    paginator = Paginator(products, 3)
+
+    page = request.GET.get('page')
+    products = paginator.get_page(page) #specific chunk of products
+
+    #Preserving Query Parameters When Using Paginator
+    get_dict_copy = request.GET.copy()
+    params = get_dict_copy.pop('page', True) and get_dict_copy.urlencode()
+
+    context = {'posts': products, 'params': params, 'search_term': search_term}   
+    return render(request, 'products/product_list.html', context)
+
+
 class PostDisplay(SingleObjectMixin, View): #inherits from SingleObjectMixin View instead
     #SingleObjectMixin provides the ability to retrieve a single object for further manipulation
     model = Product #the context
@@ -70,6 +103,10 @@ class PostDisplay(SingleObjectMixin, View): #inherits from SingleObjectMixin Vie
         self.object.save()
 
         listing = self.get_context_data(object = self.object)
+
+        if request.user != self.object.author: #the person viewing is not the listing's author
+            return render(request, 'products/product_detail_guest.html', listing) #this html hides the update and delete button
+
         return render(request, 'products/product_detail.html', listing)
     
     def get_context_data(self, **kwargs):
@@ -84,6 +121,7 @@ class PostDisplay(SingleObjectMixin, View): #inherits from SingleObjectMixin Vie
         #comment section for each post:
         context['form'] = CommentForm
         return context
+
 
 @method_decorator(login_required, name = 'dispatch') 
 class PostComment(FormView): #processing to receive the comment
@@ -117,10 +155,19 @@ class PostDetail(View):
         view = PostComment.as_view()
         return view(request, *args, **kwargs)
 
-@method_decorator(login_required, name = 'dispatch') 
-class PostDelete(DeleteView):
-    model = Product
-    success_url = reverse_lazy('home')
+@login_required
+def product_delete_view(request, id):
+    product = get_object_or_404(Product, id= id)
+    if product.author != request.user:
+        return redirect(reverse('home')) #not authorised
+
+    if request.method == "POST":
+        product.delete()
+        return redirect(reverse('home'))
+    context = {
+        "post": product
+    }
+    return render(request, "products/product_delete.html", context)
 
 #filter by category
 class PostCategory(ListView):

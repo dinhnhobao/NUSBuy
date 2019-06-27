@@ -53,8 +53,6 @@ h1 {
   <div class="item1"><h1>{{ object.title }}</h1></div>
   <div class="item2">Description: {{ object.description }}</div>
   <div class="item3">Price: {{ object.price }}</div>
-    <button onclick="location.href = '{% url 'product-update' object.id %}';" id="myButton" class="button" >Update this product listing</button>
-    <button onclick="location.href = '{% url 'product-delete' object.id %}';"" id="myButton" class="button" >Delete this product listing</button>
 </div>
 <br> 
 

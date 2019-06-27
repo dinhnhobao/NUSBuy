@@ -33,14 +33,19 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # third party
-    'django.contrib.sites',
     'category',
-    
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
     # own
     'pages',
     'products',
@@ -135,3 +140,12 @@ LOGIN_REDIRECT_URL = 'home' #if we enter 'home', it will redirect to log-in wind
 LOGOUT_REDIRECT_URL = 'home' #after logout will direct to 'home'
 
 SITE_ID = 1
+
+#Django all auth settings
+AUTHENTICATION_BACKENDS = (
+    # needed to login by username in Django admin, regardless of allauth
+    'django.contrib.auth.backends.ModelBackend',
+
+    # 'allauth' specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
