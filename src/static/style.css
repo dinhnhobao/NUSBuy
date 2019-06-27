@@ -1,5 +1,6 @@
 body {
     background-color: powderblue;
+    font-family: 'Lato', sans-serif;
 }
 
 h1 {
@@ -24,14 +25,14 @@ nav {
     text-align: center;
 }
 
-div {
+/* .bar {
     width: 119px;
-    /* border: solid 1px; */
+    border: solid 1px; 
     float: left;
     padding: 10px 0;
     background-color: black;
     color: white;
-}
+} */
 
 table, th, td {
     border: 1px solid black;
