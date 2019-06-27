@@ -16,20 +16,18 @@ Video part 2.1 & 2.2, ListView
     view_count = models.PositiveIntegerField(default=0) #how about view_count?
 2. set number of listings per page (DONE)
 3. view_count (DONE)
-4. redirecting after each CRUD operation (*)
+4. redirecting after each CRUD operation (DONE)
 Video part 3
-1. Post & see comments
+1. Post & see comments (DONE)
 
 Video part 4
-Log-in - log-out views
-Restrict access in class-based views
+Log-in - log-out views (DONE)
+Restrict access in class-based views(DONE)
 
+***implement logic for update/delete
+***button
 Video part 5
-List posts by category
+List posts by category (DONE)
 
 Video part 6
-Mixin:
-factorise your code
-share attributes & functions from different parent classes
-
-web title: pass in the page title from the class based views
+(DONE)

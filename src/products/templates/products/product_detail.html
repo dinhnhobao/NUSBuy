@@ -1,3 +1,96 @@
+<<<<<<< HEAD
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+.item1 { grid-area: header; }
+.item2 { grid-area: description; }
+.item3 { grid-area: price; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header description description description description description description description description '
+    'header header header description description description description description description description description'
+    'header header header description description description description description description description description'
+    'header header header description description description description description description description description'
+    'header header header price price price price price price price price';
+  grid-gap: 0px;
+  background-color: powderblue;
+  padding: 0px;
+}
+
+.grid-container > div {
+  background-color: powderblue;
+  text-align: left;
+  padding: 60px;
+  font-size: 10px;
+  font-family: sans-serif;
+  color: black
+}
+
+.button {
+          background-color: black;
+          border: none;
+          color: white;
+          padding: 8px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 14px;
+          margin: 4px 2px;
+          cursor: pointer;
+}
+
+h1 {
+    color: black;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 50px;
+}
+</style>
+
+<div class="h1">
+  <div class="item1"><h1>{{ object.title }}</h1></div>
+  <div class="item2">Description: {{ object.description }}</div>
+  <div class="item3">Price: {{ object.price }}</div>
+    <button onclick="location.href = '{% url 'product-update' object.id %}';" id="myButton" class="button" >Update this product listing</button>
+    <button onclick="location.href = '{% url 'product-delete' object.id %}';"" id="myButton" class="button" >Delete this product listing</button>
+</div>
+<br> 
+
+<div class = 'h1'>
+<!-- authentication logic: -->
+      <a href = "{% url 'product-update' object.id %}" class = "float-right"><i class="fas fa-edit"></i></a>
+      <a href = "{% url 'product-delete' object.id %}" class = "float-right"><i class="fas fa-trash-alt"></i></a>
+</div>
+
+<div class="form">
+  <form action="" method = "post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}            
+    <p><input type="submit" value="Submit"></p> 
+  </form>
+</div>
+
+
+<div class="comments-list">
+        {% for each_comment in comments %}
+        <div class="comment">
+            <div class="info">
+                <p>{{ each_comment.author }}<span>   <span>{{ each_comment.created_on }}</span></p>
+                <p>{{ each_comment.comment }}</p>
+            </div>   
+        </div>
+
+        {% empty %}
+            <div>
+                <h3> There are no comments yet. </h3>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+=======
 {% extends 'base.html' %}
 
 {% block content %}
@@ -196,3 +289,4 @@ width="600" height="450" frameborder="0" style="border:0" allowfullscreen></ifra
 </script>
 
 {% endblock %}
+>>>>>>> 84de46a4e98de19bccfae537ca0fa09c4ee42dbc
