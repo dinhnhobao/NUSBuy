@@ -3,7 +3,7 @@
 {% block content %}
      
 <style>
-     table, th, td {
+     /*table, th, td {
           border: 1px solid black;
           border-collapse: collapse;
      }
@@ -26,12 +26,61 @@
           font-size: 14px;
           margin: 4px 2px;
           cursor: pointer;
-     }
+     }*/
+
+* {
+  box-sizing: border-box;
+}
+
+.columns {
+  float: left;
+  width: 20%;
+  padding: 2px;
+  background-color: powderblue;
+  border: black;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 300px;
+  height: 530px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  background-color: powderblue;
+  color: black;
+}
+
+.price {
+  color: red;
+  font-size: 20px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: black;
+  background-color: orange;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 12px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+
+.button {
+     margin-top: 550px;
+     margin-left: -900px;
+}
 </style>
 
      {% comment %} <div class="grid-item">{{ instance.id }}</div>
      <div class="grid-item"><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</div> {% endcomment %}
-<table style="width:100%">
+{% comment %} <table style="width:100%">
      <tr>
           <th>Column 1</th>
           <th>Column 2</th>
@@ -55,9 +104,27 @@
                 <h3> There are no product listings yet. </h3>
             </div>
      {% endfor %}
-</table>
+</table> {% endcomment %}
 
-<button onclick="location.href = 'http://127.0.0.1:8000/products/create/';" id="myButton" class="button" >Create</button>
+{% for instance in posts %}
+     <div class="columns">
+          <div class="card">
+  	          <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Product" style="height:300px; width:100%;">
+  	          <h2>{{ instance.title }}</h2>
+  	          <p class="price">${{ instance.price_in_SGD }}</p>
+  	          <p>Category: {{ instance.category }}</p>
+               <p>Views: {{ instance.view_count }}</p>
+  	          <p><button>Add to Cart</button></p>
+          </div>
+     </div>
+     
+     {% empty %}
+            <div>
+                <h3> There are no product listings yet. </h3>
+            </div>
+     {% endfor %}
+
+<button onclick="location.href = 'http://127.0.0.1:8000/post/create/';" id="myButton" class="button" >Create</button>
 {% include 'products/pagination_links.html' %}
 
 {% endblock %}
