@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'base.html' %}
 
 {% block breadcrumb %}{% endblock %}
@@ -13,4 +14,21 @@
         </form>
     </div>
 
+=======
+{% extends 'base.html' %}
+
+{% block breadcrumb %}{% endblock %}
+
+{% block content %}
+
+    <div class="form login-form">
+        <form action="" method = "post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <p><input type="submit" value="Login"></p> 
+        </form>
+    </div>
+
+>>>>>>> e997e3c4cebb70805421af43bcee73dbf268a0ac
 {% endblock %}
