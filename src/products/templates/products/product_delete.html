@@ -1,45 +1,3 @@
-<<<<<<< HEAD
-{% extends 'base.html' %}
-
-{% block content %}
-<style>
-.button {
-    background-color: black;
-    border: none;
-    color: white;
-    padding: 8px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    font-family: sans-serif;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-
-h1 {
-    color: black;
-    /* tuong tu rgb co alpha la do mo mau */
-    font-family: 'Lato', sans-serif;
-    font-weight: 900;
-    font-size: 50px;
-}
-
-h3 {
-    font-family: 'Lato', sans-serif;
-}
-</style>
-
-<form action='.' method='POST'>
-    {% csrf_token %}
-    <h3>Do you want to delete the product "{{ post.title }}"?</h3>
-    <p><input type='submit' value='Yes' class ='button'/>  <a href='../' class ='button'>Cancel</a></p>
-</form>
-
-
-
-
-=======
 {% extends 'base.html' %}
 
 {% block content %}
@@ -80,5 +38,4 @@ h3 {
 
 
 
->>>>>>> 84de46a4e98de19bccfae537ca0fa09c4ee42dbc
 {% endblock %}
