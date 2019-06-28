@@ -183,3 +183,7 @@ class PostCategory(ListView):
         context["this_category"] = my_category #add category to context dictionary
         print(context)
         return context
+
+#report a bug view
+def report_bug(request):
+    return render(request, 'products/report_bug.html')

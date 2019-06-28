@@ -23,7 +23,9 @@ nav {
     font-size: 14px;
     font-family: sans-serif;
     text-align: center;
+    width: 150%;
 }
+
 
 /* .bar {
     width: 119px;
@@ -34,12 +36,15 @@ nav {
     color: white;
 } */
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid black;
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     padding: 5px;
     text-align: center;
     font-size: 14px;
@@ -47,6 +52,7 @@ th, td {
     background-color: orange;
     color: white;
 }
+
 
 /* a:first-child div {
     border-top-left-radius: 4px;

@@ -27,4 +27,6 @@ urlpatterns = [
     url(r'', include('products.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^$', views.products_list, name = 'home'), #remember to use as_view() to render view
+    url(r'^report_bug/$', views.report_bug, name = 'report')
 ]
