@@ -1,6 +1,6 @@
 <!-- This is used for commenting-->
 {% load static %}
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="static/style.css">
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,11 +8,29 @@
         <title>NUSBuy: buy and sell items on NUS campus</title>
         <link rel="stylesheet" href="/static/style.css">
     </head>
+    <style>
+        nav {
+            font-size: 14px;
+            font-family: sans-serif;
+            text-align: center;
+            width: 150%;
+        }
+
+        .menu {
+            width: 119px;
+            border: solid 1px; 
+            float: left;
+            padding: 10px 0;
+            background-color: black;
+            color: white;
+        }    
+    </style>
+
     <body>
         <img style="width: 100px; height: 100px;" src="/static/logo.png" alt="NUSBuy logo"/>
         <nav>
-            <a href="{% url 'home' %}"><div>See all listings</div></a>
-            <a href="{% url 'report' %}""><div>Report a bug</div></a>
+            <a href="{% url 'home' %}"><div class = "menu">See all listings</div></a>
+            <a href="{% url 'report' %}"><div class = "menu">Report a bug</div></a>
         </nav>
 
         <nav>
