@@ -1,12 +1,13 @@
 <!-- This is used for commenting-->
 {% load static %}
-<link rel="stylesheet" href="static/style.css">
+<link rel="stylesheet" href="style.css">
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
         <title>NUSBuy: buy and sell items on NUS campus</title>
         <link rel="stylesheet" href="/static/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <style>
         nav {
@@ -23,26 +24,48 @@
             padding: 10px 0;
             background-color: black;
             color: white;
+        }
+        button {
+            background-color: grey;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .auth {
+            background-color: grey;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: -15px;
         }    
     </style>
 
     <body>
         <img style="width: 100px; height: 100px;" src="/static/logo.png" alt="NUSBuy logo"/>
-        <nav>
-            <a href="{% url 'home' %}"><div class = "menu">See all listings</div></a>
-            <a href="{% url 'report' %}"><div class = "menu">Report a bug</div></a>
-        </nav>
 
-        <nav>
-        <h2></h2>
-        {% if user.is_authenticated %}
-            <p><a href="{% url 'logout' %}">&#128274 Logout</a></p>
-        {% else %}
-            <p><a href="{% url 'login' %}">&#128275 Login</a></p>
-        {% endif %}
-        </nav>
-        <br>
-        <br>
+            <nav>
+                <a href="{% url 'home' %}"><div class="menu">See all listings</div></a>
+                <a href="{% url 'report' %}""><div class="menu">Report a bug</div></a>
+            </nav>
+
+        
+            {% if user.is_authenticated %}
+                <p><a href="{% url 'logout' %}"><button class= "auth">&#128274 Logout</button></a></p>
+            {% else %}
+                <p><a href="{% url 'login' %}"><button class = "auth">&#128275 Login</button></a></p>
+            {% endif %}
+        
         {% block content %}
             replace me
         {% endblock %} 
