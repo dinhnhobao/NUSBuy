@@ -3,18 +3,34 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
         <title>NUSBuy: buy and sell items on NUS campus</title>
         <link rel="stylesheet" href="/static/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
+    <style>
+        nav {
+            font-size: 14px;
+            font-family: sans-serif;
+            text-align: center;
+        }
+        .bar {
+            width: 119px;
+            border: solid 1px; 
+            float: left;
+            padding: 10px 0;
+            background-color: black;
+            color: white;
+        }
+    </style>
     <body>
         <!--https://www.w3schools.com/html/html_images.asp-->
         <img style="width: 100px; height: 100px;" src="/static/logo.png" alt="NUSBuy logo"/>
         <nav>
-            <a href="http://127.0.0.1:8000/blog/"><div>Home</div></a>
-            <a href="http://127.0.0.1:8000/blog/"><div>About</div></a>
-            <a href="http://127.0.0.1:8000/blog/"><div>Contact</div></a>
-            <a href="http://127.0.0.1:8000/blog/"><div>Sitemap</div></a>
+            <a href="http://127.0.0.1:8000/blog/"><div class ="bar">Home</div></a>
+            <a href="http://127.0.0.1:8000/blog/"><div class ="bar">About</div></a>
+            <a href="http://127.0.0.1:8000/blog/"><div class ="bar">Contact</div></a>
+            <a href="http://127.0.0.1:8000/blog/"><div class ="bar">Sitemap</div></a>
         </nav>
 
         <nav>
