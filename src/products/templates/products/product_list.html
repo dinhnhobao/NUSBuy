@@ -78,7 +78,7 @@
 }
 
 .sort button {
-    background-color: grey;
+    background-color: black;
     border: none;
     color: white;
     padding: 8px 20px;
@@ -88,6 +88,19 @@
     font-size: 14px;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+.create button {
+    background-color: green;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;   
 }
 </style>
 
@@ -120,16 +133,20 @@
 </table> {% endcomment %}
 <div class="sort">
      <a
+     href='{% url 'product-create' %}'
+     ><button>Create a listing</button>
+     </a>
+     <h5></h5>
+     <a
      href="?title=True"
      class="btn btn-{% if 'title' in request.GET %}warning{% else %}primary{% endif %}"
      ><button>Sort by name</button>
      </a>
-      
      <a
      href="?pub_date=True"
      class="btn btn-{% if 'pub_date' in request.GET %}warning{% else %}primary{% endif %}"
      ><button>Sort by publish date</button>
-     </a>
+     </a>          
      <a
      href="?view_count=True"
      class="btn btn-{% if 'view_count' in request.GET %}warning{% else %}primary{% endif %}"
@@ -145,8 +162,8 @@
   	          <p class="price">${{ instance.price_in_SGD }}</p>
   	          <p>Category: {{ instance.category }}</p>
                <p>Views: {{ instance.view_count }}</p>
-               <p>Posts with similar category</p>
-  	          <p><a href='{{ instance.get_absolute_url }}'><button>See details</button></a></p>
+               <a href = "{% url 'product-by-category' instance.category.pk %}"><h4>Posts with similar category</h4></a>
+  	          <p><a href='{% url 'product-detail' instance.pk %}'><button>See details</button></a></p>
           </div>
      </div>
      
@@ -154,9 +171,9 @@
             <div>
                 <h3> There are no product listings yet. </h3>
             </div>
-     {% endfor %}
-
-<button onclick="location.href = 'http://127.0.0.1:8000/post/create/';" id="myButton" class="button" >Create a listing</button>
+            <a href='{% url 'product-create' %}'><button>Create a listing</button></a>
+     {% endfor %}     
+     
 {% include 'products/pagination_links.html' %}
 
 {% endblock %}
