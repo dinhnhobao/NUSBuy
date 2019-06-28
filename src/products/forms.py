@@ -97,6 +97,14 @@ class ProductForm(forms.ModelForm):
         abstract = True
 
 class CommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        initial = '5 star!',
+        widget=forms.Textarea(attrs={
+                                    "rows": 10,
+                                    'cols': 60,
+                                }
+                            )
+    )
     class Meta:
         model = Comment
         fields = ('comment',)
