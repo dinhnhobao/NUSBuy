@@ -2,6 +2,12 @@
 
 {% block content %}
 <style>
+.single {
+  width: 300px;
+  height: 400px;
+  background: url("{{ object.image_link_1 }}");
+}
+
 .slider{
     width: 300px;
     height: 400px;
@@ -247,6 +253,13 @@ width="600" height="450" frameborder="0" style="border:0" allowfullscreen></ifra
   }
   else {
     document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.803071847354!2d103.77198767907697!3d1.2925770990618692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1aff72797d93%3A0x46e392c21ec882ca!2sNUS+Business+School!5e0!3m2!1sen!2s!4v1561200263058!5m2!1sen!2s";
+  }
+</script>
+
+<script>
+  var t = "{{ object.image_link_2 }}";
+  if(t == '') {
+    document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("slider")[0].className = "single";
   }
 </script>
 
