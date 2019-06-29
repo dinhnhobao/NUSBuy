@@ -5,23 +5,16 @@
 .slider{
     width: 300px;
     height: 400px;
-    background: url("https://www.sleepzone.ie/uploads/images/PanelImages800x400/TheBurren/General/sleepzone_hostels_burren_800x400_14.jpg");
-    margin: 100px auto;
+    background: url("{{ object.image_link_1 }}");
     animation: slide 20s infinite;
   }
   
-  @keyframes slide {
-    25%{
-      background: url("{{ object.image_link_1 }}");
-    }
+@keyframes slide {
     50%{
       background: url("{{ object.image_link_2 }}");
     }
-    75%{
-      background: url("{{ object.image_link_3 }}");
-    }
     100%{
-      background: url("{{ object.image_link_4 }}");
+      background: url("{{ object.image_link_1 }}");
     }
   }
 
@@ -31,6 +24,9 @@
 .item4 { grid-area: count; }
 .item5 { grid-area: category; }
 .item6 { grid-area: price; }
+.item7 { grid-area: multy; }
+.item8 { grid-area: deliver; }
+.item9 { grid-area: author; }
 
 .grid-container {
   display: grid;
@@ -39,7 +35,9 @@
     'image image image count count count count count count'
     'image image image category category category category category category'
     'image image image price price price price price price'
-    'image image image price price price price price price';
+    'image image image multy multy multy multy multy multy'
+    'image image image deliver deliver deliver deliver deliver deliver'
+    'image image image author author author author author author';
   grid-gap: 0px;
   background-color: powderblue;
   padding: 0px;
@@ -50,7 +48,8 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: powderblue;
   text-align: left;
-  padding: 25px;
+  padding: 15px 15px 15px 15px;
+  margin-right: 300px;
   font-size: 15px;
   font-family: sans-serif;
   color: black;
@@ -77,7 +76,7 @@ h1 {
 }
 
 .form {
-  width: 100%;
+  width: 30%;
   background-color: powderblue;
   color: black;
 }
@@ -101,7 +100,7 @@ h1 {
 .comments-list > div {
   background-color: powderblue;
   text-align: left;
-  padding: 60px;
+  padding: 0px;
   font-size: 10px;
   font-family: sans-serif;
   color: black;
@@ -110,8 +109,9 @@ h1 {
 .info {
   background-color: powderblue;
   color: black;
-  margin: 0px;
-  padding: 0px;
+  border: 1px solid black;
+  padding-left: 10px;
+  width: 33.3%
 }
 
 .info > div {
@@ -120,23 +120,18 @@ h1 {
 </style>
 
 <div class="grid-container">
-<!--
   <div class="item1"><h2>{{ object.title }}</h2></div>
   <div class="item2"><div class="slider"></div></div>
   <div class="item3"><i class="fa fa-calendar" aria-hidden="true"></i> Date: {{ object.pub_date }}</div>  
   <div class="item4"><i class="fa fa-eye" aria-hidden="true"></i> Views: {{ object.view_count }}</div>
-  <div class="item4"><i class="fa fa-eye" aria-hidden="true"></i> Authors: {{ object.author }}</div>
-  -->
-  <div class="text"><i class="fa fa-filter" aria-hidden="true"></i> Category: {{ object.category }}</div>
-  <div class="text"><i class="fa fa-usd" aria-hidden="true"></i> Condition: ${{ object.condition }}</div>
-  <div class="text"><i class="fa fa-usd" aria-hidden="true"></i> Price: ${{ object.price_in_SGD }}</div>
-  <div class="text"><i class="fa fa-usd" aria-hidden="true"></i> Description: ${{ object.description }}</div>
-  <div class="text"><i class="fa fa-usd" aria-hidden="true"></i> Multiple quantities: ${{ object.this_product_has_multiple_quantities }}</div>
-  <div class="text"><i class="fa fa-usd" aria-hidden="true"></i> Delivery location: ${{ object.delivery_location }}</div>
-  <div class="text"><i class="fa fa-usd" aria-hidden="true"></i> Extra: ${{ object.extra_information}}</div>
-  <button onclick="location.href = '{% url 'product-update' object.id %}';" id="myButton" class="button" >Update</button>
-  <button onclick="location.href = '{% url 'product-delete' object.id %}';" id="myButton" class="button" >Delete</button>
-  <button onclick="location.href = '{% url 'home' %}';" id="myButton" class="button" >Back to listings</button>
+  <div class="item5"><i class="fa fa-filter" aria-hidden="true"></i> Category: {{ object.category }}</div>
+  <div class="item6"><i class="fa fa-usd" aria-hidden="true"></i> Price: ${{ object.price_in_SGD }}</div>
+  <div class="item7"><i class="fa fa-files-o" aria-hidden="true"></i> Multiple quantities: {{ object.this_product_has_multiple_quantities }}</div>
+  <div class="item8"><i class="fa fa-map-marker" aria-hidden="true"></i> Delivery location: {{ object.delivery_location }}</div>
+  <div class="item9"><i class="fa fa-user" aria-hidden="true"></i> Author: {{ object.author }}</div>
+  <button onclick="location.href = 'http://127.0.0.1:8000/post/{{ object.id }}/update/';" id="myButton" class="button" >Update</button>
+  <button onclick="location.href = 'http://127.0.0.1:8000/post/{{ object.id }}/delete/';" id="myButton" class="button" >Delete</button>
+  <button onclick="location.href = 'http://127.0.0.1:8000/';" id="myButton" class="button" >Back</button>
 </div>
 <br /> 
 
@@ -153,7 +148,6 @@ h1 {
         {% for each_comment in comments %}
         <div class="comment">
             <div class="info">
-                <hr style="border-bottom: dotted 1px #000" />
                 <p style="font-size: 15px; color: red;">{{ each_comment.author }}<span>   <span>at {{ each_comment.created_on }}</span></p>
                 <p style="font-size: 15px;">{{ each_comment.comment }}</p>
             </div>   
@@ -165,7 +159,8 @@ h1 {
             </div>
         {% endfor %}
 </div>
-
+<br>
+<br>
 <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.806464815039!2d103.77808461467792!3d1.290415299058816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1a54bcc446f1%3A0xe1e7c4fb5e8b36!2sPGP+House!5e0!3m2!1sen!2s!4v1561174890032!5m2!1sen!2s" 
 width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 

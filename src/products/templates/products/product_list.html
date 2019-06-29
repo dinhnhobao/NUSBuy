@@ -34,7 +34,7 @@
 
 .columns {
   float: left;
-  width: 20%;
+  width: 22.2%;
   padding: 2px;
   background-color: powderblue;
   border: black;
@@ -73,23 +73,86 @@
 }
 
 .button {
-     margin-top: 550px;
-     margin-left: -900px;
+     {% comment %} margin-top: 570px; {% endcomment %}
+     margin-bottom: 200px;
+     margin-left: -275px;
+}
+
+.sort button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 </style>
+
+     {% comment %} <div class="grid-item">{{ instance.id }}</div>
+     <div class="grid-item"><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</div> {% endcomment %}
+{% comment %} <table style="width:100%">
+     <tr>
+          <th>Column 1</th>
+          <th>Column 2</th>
+          <!-- ví dụ: instance.price_in_SGD-->
+     </tr>
+     {% for instance in posts %}
+          <h3>
+               id: {{ instance.id }} 
+               price: {{ instance.price_in_SGD }}
+               title: {{ instance.title }}
+               image_link: {{ instance.image_link_1 }}
+               pub_date: {{ instance.pub_date }}
+               view_count: {{ instance.view_count }}
+               category: {{ instance.category }}
+               Posts with similar category:
+               {% url 'product-by-category' instance.category.pk %}
+          </h3>
+     
+     {% empty %}
+            <div>
+                <h3> There are no product listings yet. </h3>
+            </div>
+     {% endfor %}
+</table> {% endcomment %}
+<div class="sort">
+     <a
+     href="?title=True"
+     class="btn btn-{% if 'title' in request.GET %}warning{% else %}primary{% endif %}"
+     ><button>Sort by name</button>
+     </a>
+      
+     <a
+     href="?pub_date=True"
+     class="btn btn-{% if 'pub_date' in request.GET %}warning{% else %}primary{% endif %}"
+     ><button>Sort by publish date</button>
+     </a>
+     <a
+     href="?view_count=True"
+     class="btn btn-{% if 'view_count' in request.GET %}warning{% else %}primary{% endif %}"
+     ><button>Sort by view count</button>
+     </a>
+     <button onclick="location.href = 'http://127.0.0.1:8000/post/create/';" id="myButton" class="button" >Create a listing</button>
+</div>
+
+{% include 'products/pagination_links.html' %}
+
+
 
 {% for instance in posts %}
      <div class="columns">
           <div class="card">
-  	          <img src="{{ instance.image_link_1 }}"" alt="Product" style="height:300px; width:100%;">
+  	          <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Product" style="height:300px; width:100%;">
   	          <h2>{{ instance.title }}</h2>
   	          <p class="price">${{ instance.price_in_SGD }}</p>
   	          <p>Category: {{ instance.category }}</p>
                <p>Views: {{ instance.view_count }}</p>
-               <a href="{% url 'product-detail' instance.pk %}"><font color="blue">See details</font></a>. 
-               <p>Posts with similar category:
-               <a href="{% url 'product-by-category' instance.category.pk %}"><font color="blue">here</font></a>.
-               </p>
+               <p>Posts with similar category</p>
+  	          <p><a href='{{ instance.get_absolute_url }}'><button>See details</button></a></p>
           </div>
      </div>
      
@@ -98,28 +161,7 @@
                 <h3> There are no product listings yet. </h3>
             </div>
      {% endfor %}
-<a href="{% url 'product-create' %}"><font color="blue">Create a new listing</font></a>. 
-
-<a href = "{% url 'product-create' %}" class = "float-left"><i class="fas fa-plus-square"></i></a>
-<a
-     href="?title=True"
-     class="btn btn-{% if 'title' in request.GET %}warning{% else %}primary{% endif %}"
-     style="margin-bottom: 5px">Sort by name
-</a>
-      
-<a
-     href="?pub_date=True"
-     class="btn btn-{% if 'pub_date' in request.GET %}warning{% else %}primary{% endif %}"
-     style="margin-bottom: 5px">Sort by publish date
-</a>
-
-<a
-     href="?view_count=True"
-     class="btn btn-{% if 'view_count' in request.GET %}warning{% else %}primary{% endif %}"
-     style="margin-bottom: 5px">Sort by view count
-</a>
 
 
-{% include 'products/pagination_links.html' %}
 
 {% endblock %}
