@@ -135,6 +135,24 @@
      </a>
 </div>
 
+<div class="pagination">
+    <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="?page=1"><button>&laquo; first</button></a>
+            <a href="?page={{ posts.previous_page_number }}"><button>previous</button></a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}"><button>next</button></a>
+            <a href="?page={{ posts.paginator.num_pages }}"><button>last &raquo;</button></a>
+        {% endif %}
+    </span>
+</div>
+
 
 {% for instance in posts %}
      <div class="columns">
@@ -144,16 +162,14 @@
   	          <p class="price">${{ instance.price_in_SGD }}</p>
   	          <p>Category: {{ instance.category }}</p>
                <p>Views: {{ instance.view_count }}</p>
-               <h4>Posts with similar category</h4></a>
-  	          <p><a href='{% url 'product-detail' instance.pk %}'><button>See details</button></a></p>
+               <p><a href = "{% url 'product-by-category' instance.category.pk %}"><h4>Same category</h4></a></p>
+  	          <p><a href="{% url 'product-detail' instance.pk %}"><button>See details</button></a></p>
           </div>
-     </div>
-     
+     </div>     
      {% empty %}
             <div>
                 <h3> There are no product listings yet. </h3>
             </div>
      {% endfor %}     
-     
 
 {% endblock %}

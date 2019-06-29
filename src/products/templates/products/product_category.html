@@ -3,7 +3,7 @@
 {% block content %}
      
 <style>
-     table, th, td {
+     /*table, th, td {
           border: 1px solid black;
           border-collapse: collapse;
      }
@@ -26,36 +26,152 @@
           font-size: 14px;
           margin: 4px 2px;
           cursor: pointer;
-     }
+     }*/
+
+* {
+  box-sizing: border-box;
+}
+
+.columns {
+  float: left;
+  width: 22.2%;
+  padding: 2px;
+  background-color: powderblue;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 300px;
+  height: 530px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  background-color: powderblue;
+  color: black;
+}
+
+.price {
+  color: red;
+  font-size: 20px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: black;
+  background-color: orange;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 12px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+
+.button {
+     margin-top: 570px;
+     margin-left: -275px;
+}
+
+.sort button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.create button {
+    background-color: green;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;   
+}
 </style>
-    <div>
-    <h5> Product listings in {{ this_category.name }} category </h5>
-    </div>
-     {% comment %} <div class="grid-item">{{ instance.id }}</div>
-     <div class="grid-item"><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</div> {% endcomment %}
-<table style="width:100%">
-     <tr>
-          <th>Column 1</th>
-          <th>Column 2</th>
-          <!-- ví dụ: instance.price_in_SGD-->
-     </tr>
-     {% for instance in product_list %}
-          <tr>
-               <td>{{ instance.id }} {{ instance.price_in_SGD }}
-                   {{ instance.title }}
-                   {{ instance.image_link_1 }}
-                   {{ instance.pub_date }}
-                   {{ instance.view_count }}</td>
-          </tr>
-     
+
+<form class = 'form-inline my-2 my-lg-1'>
+     <input
+          class = 'form-control mr-sm-2'
+          type = 'search'
+          placeholder = 'Search'
+          aria-label = 'Search'
+          name = 'search'>
+     <button class = 'btn btn-outline-success my-2 my-sm-0' type = 'submit'>Search</button>
+</form>
+<div class="sort">
+     <a
+     href='{% url 'product-create' %}'
+     ><button>Create a listing</button>
+     </a>
+     <h5></h5>
+     <a
+     href="?title=True"
+     class="btn btn-{% if 'title' in request.GET %}warning{% else %}primary{% endif %}"
+     ><button>Sort by name</button>
+     </a>
+     <a
+     href="?pub_date=True"
+     class="btn btn-{% if 'pub_date' in request.GET %}warning{% else %}primary{% endif %}"
+     ><button>Sort by publish date</button>
+     </a>          
+     <a
+     href="?view_count=True"
+     class="btn btn-{% if 'view_count' in request.GET %}warning{% else %}primary{% endif %}"
+     ><button>Sort by view count</button>
+     </a>
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="?page=1"><button>&laquo; first</button></a>
+            <a href="?page={{ posts.previous_page_number }}"><button>previous</button></a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}"><button>next</button></a>
+            <a href="?page={{ posts.paginator.num_pages }}"><button>last &raquo;</button></a>
+        {% endif %}
+    </span>
+</div>
+
+<div>
+    <h3> Product listings in {{ this_category.name }} category </h5>
+</div>
+{% for instance in object_list %}
+     <div class="columns">
+          <div class="card">
+  	          <img src="{{ instance.image_link_1 }}" alt="Product" style="height:300px; width:100%;">
+  	          <h2>{{ instance.title }}</h2>
+  	          <p class="price">${{ instance.price_in_SGD }}</p>
+  	          <p>Category: {{ instance.category }}</p>
+               <p>Views: {{ instance.view_count }}</p>
+               <p><a href = "{% url 'product-by-category' instance.category.pk %}"><h4>Same category</h4></a></p>
+  	          <p><a href="{% url 'product-detail' instance.pk %}"><button>See details</button></a></p>
+          </div>
+     </div>     
      {% empty %}
             <div>
                 <h3> There are no product listings yet. </h3>
             </div>
-     {% endfor %}
-</table>
-
-<button onclick="location.href = '{% url 'home' %}" id="myButton" class="button" >Create</button>
-{% include 'products/pagination_links.html' %}
+     {% endfor %}     
 
 {% endblock %}
