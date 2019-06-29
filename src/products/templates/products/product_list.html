@@ -34,10 +34,9 @@
 
 .columns {
   float: left;
-  width: 20%;
+  width: 22.2%;
   padding: 2px;
   background-color: powderblue;
-  border: black;
 }
 
 .card {
@@ -104,33 +103,15 @@
 }
 </style>
 
-     {% comment %} <div class="grid-item">{{ instance.id }}</div>
-     <div class="grid-item"><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</div> {% endcomment %}
-{% comment %} <table style="width:100%">
-     <tr>
-          <th>Column 1</th>
-          <th>Column 2</th>
-          <!-- ví dụ: instance.price_in_SGD-->
-     </tr>
-     {% for instance in posts %}
-          <h3>
-               id: {{ instance.id }} 
-               price: {{ instance.price_in_SGD }}
-               title: {{ instance.title }}
-               image_link: {{ instance.image_link_1 }}
-               pub_date: {{ instance.pub_date }}
-               view_count: {{ instance.view_count }}
-               category: {{ instance.category }}
-               Posts with similar category:
-               {% url 'product-by-category' instance.category.pk %}
-          </h3>
-     
-     {% empty %}
-            <div>
-                <h3> There are no product listings yet. </h3>
-            </div>
-     {% endfor %}
-</table> {% endcomment %}
+<form class = 'form-inline my-2 my-lg-1'>
+     <input
+          class = 'form-control mr-sm-2'
+          type = 'search'
+          placeholder = 'Search'
+          aria-label = 'Search'
+          name = 'search'>
+     <button class = 'btn btn-outline-success my-2 my-sm-0' type = 'submit'>Search</button>
+</form>
 <div class="sort">
      <a
      href='{% url 'product-create' %}'
@@ -154,15 +135,16 @@
      </a>
 </div>
 
+
 {% for instance in posts %}
      <div class="columns">
           <div class="card">
-  	          <img src="https://www.w3schools.com/w3images/jeans3.jpg" alt="Product" style="height:300px; width:100%;">
+  	          <img src="{{ instance.image_link_1 }}" alt="Product" style="height:300px; width:100%;">
   	          <h2>{{ instance.title }}</h2>
   	          <p class="price">${{ instance.price_in_SGD }}</p>
   	          <p>Category: {{ instance.category }}</p>
                <p>Views: {{ instance.view_count }}</p>
-               <a href = "{% url 'product-by-category' instance.category.pk %}"><h4>Posts with similar category</h4></a>
+               <h4>Posts with similar category</h4></a>
   	          <p><a href='{% url 'product-detail' instance.pk %}'><button>See details</button></a></p>
           </div>
      </div>
@@ -171,9 +153,7 @@
             <div>
                 <h3> There are no product listings yet. </h3>
             </div>
-            <a href='{% url 'product-create' %}'><button>Create a listing</button></a>
      {% endfor %}     
      
-{% include 'products/pagination_links.html' %}
 
 {% endblock %}

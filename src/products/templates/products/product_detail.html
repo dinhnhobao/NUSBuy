@@ -29,18 +29,35 @@
 .grid-container {
   display: grid;
   grid-template-areas:
-    'header header header date date date date date date '
-    'image image image count count count count count count'
-    'image image image category category category category category category'
-    'image image image price price price price price price'
-    'image image image multy multy multy multy multy multy'
-    'image image image deliver deliver deliver deliver deliver deliver'
-    'image image image author author author author author author';
+    'header header header'
+    'image image image'
+    'image image image'
+    'image image image'
+    'image image image'
+    'image image image'
+    'image image image';
   grid-gap: 0px;
   background-color: powderblue;
   padding: 0px;
   width: 100%
 }
+
+.grid-box {
+  display: grid;
+  grid-template-areas:
+    'date date date date date date date date date'
+    'count count count count count count count count count'
+    'category category category category category category category category category'
+    'price price price price price price price price price'
+    'multy multy multy multy multy multy multy multy multy'
+    'deliver deliver deliver deliver deliver deliver deliver deliver deliver'
+    'author author author author author author author author author';
+  grid-gap: 0px;
+  background-color: powderblue;
+  padding-right: 100px;
+  width: 50%;
+}
+
 .grid-container > div {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: powderblue;
@@ -51,6 +68,18 @@
   font-family: sans-serif;
   color: black;
 }
+
+.grid-box > div {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: powderblue;
+  text-align: left;
+  padding: 15px 15px 42.5px 15px;
+  margin-right: 300px;
+  font-size: 15px;
+  font-family: sans-serif;
+  color: black;
+}
+
 .button {
           background-color: black;
           border: none;
@@ -106,18 +135,39 @@ h1 {
 .info > div {
   padding-left: 0px;
 }
+
+.columns {
+  float: left;
+  width: 24.2%;
+  padding: 2px;
+  background-color: powderblue;
+}
+
+.control {
+  margin: 2px;
+  padding: 2px;
+}
 </style>
 
-<div class="grid-container">
-  <div class="item1"><h2>{{ object.title }}</h2></div>
-  <div class="item2"><div class="slider"></div></div>
-  <div class="item3"><i class="fa fa-calendar" aria-hidden="true"></i> Date: {{ object.pub_date }}</div>  
-  <div class="item4"><i class="fa fa-eye" aria-hidden="true"></i> Views: {{ object.view_count }}</div>
-  <div class="item5"><i class="fa fa-filter" aria-hidden="true"></i> Category: {{ object.category }}</div>
-  <div class="item6"><i class="fa fa-usd" aria-hidden="true"></i> Price: ${{ object.price_in_SGD }}</div>
-  <div class="item7"><i class="fa fa-files-o" aria-hidden="true"></i> Multiple quantities: {{ object.this_product_has_multiple_quantities }}</div>
-  <div class="item8"><i class="fa fa-map-marker" aria-hidden="true"></i> Delivery location: {{ object.delivery_location }}</div>
-  <div class="item9"><i class="fa fa-user" aria-hidden="true"></i> Author: {{ object.author }}</div>
+<div class="columns">
+  <div class ="grid-container">
+    <div class="item1"><h2>{{ object.title }}</h2></div>
+    <div class="item2"><div class="slider"></div></div>
+  </div>
+</div>
+
+<div class ="grid-box">
+    <div class="item3"><i class="fa fa-calendar" aria-hidden="true"></i> Date: {{ object.pub_date }}</div>  
+    <div class="item4"><i class="fa fa-eye" aria-hidden="true"></i> Views: {{ object.view_count }}</div>
+    <div class="item5"><i class="fa fa-filter" aria-hidden="true"></i> Category: {{ object.category }}</div>
+    <div class="item6"><i class="fa fa-usd" aria-hidden="true"></i> Price: ${{ object.price_in_SGD }}</div>
+    <div class="item7"><i class="fa fa-files-o" aria-hidden="true"></i> Multiple quantities: {{ object.this_product_has_multiple_quantities }}</div>
+    <div class="item8"><i class="fa fa-map-marker" aria-hidden="true"></i> Delivery location: {{ object.delivery_location }}</div>
+    <div class="item9"><i class="fa fa-user" aria-hidden="true"></i> Author: {{ object.author }}</div>
+</div>
+
+
+<div class ="control">
   <button onclick="location.href = '{% url 'product-update' object.pk %}" id="myButton" class="button" >Update</button>
   <button onclick="location.href = '{% url 'product-delete' object.pk %}" id="myButton" class="button" >Delete</button>
   <button onclick="location.href = '{% url 'home' %}" id="myButton" class="button" >Back</button>
@@ -186,5 +236,7 @@ width="600" height="450" frameborder="0" style="border:0" allowfullscreen></ifra
     document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.803071847354!2d103.77198767907697!3d1.2925770990618692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1aff72797d93%3A0x46e392c21ec882ca!2sNUS+Business+School!5e0!3m2!1sen!2s!4v1561200263058!5m2!1sen!2s";
   }
 </script>
+
+{% include "products/pagination_links.html" %}
 
 {% endblock %}
