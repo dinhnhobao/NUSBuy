@@ -166,6 +166,46 @@ h1 {
   margin: 4px 2px;
   cursor: pointer;
 }
+        nav {
+            font-size: 14px;
+            font-family: sans-serif;
+            text-align: center;
+            width: 150%;
+        }
+
+        .menu {
+            width: 119px;
+            border: solid 1px; 
+            float: left;
+            padding: 10px 0;
+            background-color: black;
+            color: white;
+        }
+        button {
+            background-color: grey;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .auth {
+            background-color: grey;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: -15px;
+        }    
+  
 </style>
 
 <div class="columns">
@@ -176,7 +216,7 @@ h1 {
 </div>
 
 <div class ="grid-box">
-    <div class="item3"><i class="fa fa-calendar" aria-hidden="true"></i> Date: {{ object.pub_date }}</div>  
+    <div class="item3"><i class="fa fa-calendar" aria-hidden="true"></i> Time uploaded: {{ object.pub_date }}</div>  
     <div class="item4"><i class="fa fa-eye" aria-hidden="true"></i> Views: {{ object.view_count }}</div>
     <div class="item5"><i class="fa fa-filter" aria-hidden="true"></i> Category: {{ object.category }}</div>
     <div class="item6"><i class="fa fa-usd" aria-hidden="true"></i> Price: ${{ object.price_in_SGD }}</div>
