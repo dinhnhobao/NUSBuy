@@ -2,30 +2,82 @@
 
 {% block content %}
 <style>
+.slider{
+    width: 300px;
+    height: 400px;
+    background: url("{{ object.image_link_1 }}");
+    animation: slide 20s infinite;
+  }
+  
+@keyframes slide {
+    50%{
+      background: url("{{ object.image_link_2 }}");
+    }
+    100%{
+      background: url("{{ object.image_link_1 }}");
+    }
+  }
 .item1 { grid-area: header; }
-.item2 { grid-area: description; }
-.item3 { grid-area: price; }
-
+.item2 { grid-area: image; }
+.item3 { grid-area: date; }
+.item4 { grid-area: count; }
+.item5 { grid-area: category; }
+.item6 { grid-area: price; }
+.item7 { grid-area: multy; }
+.item8 { grid-area: deliver; }
+.item9 { grid-area: author; }
 .grid-container {
   display: grid;
   grid-template-areas:
-    'header header header description description description description description description description description '
-    'header header header description description description description description description description description'
-    'header header header description description description description description description description description'
-    'header header header description description description description description description description description'
-    'header header header price price price price price price price price';
+    'header header header'
+    'image image image'
+    'image image image'
+    'image image image'
+    'image image image'
+    'image image image'
+    'image image image';
   grid-gap: 0px;
   background-color: powderblue;
   padding: 0px;
+  width: 100%
+}
+
+.grid-box {
+  display: grid;
+  grid-template-areas:
+    'date date date date date date date date date'
+    'count count count count count count count count count'
+    'category category category category category category category category category'
+    'price price price price price price price price price'
+    'multy multy multy multy multy multy multy multy multy'
+    'deliver deliver deliver deliver deliver deliver deliver deliver deliver'
+    'author author author author author author author author author';
+  grid-gap: 0px;
+  background-color: powderblue;
+  padding-right: 100px;
+  width: 50%;
 }
 
 .grid-container > div {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: powderblue;
   text-align: left;
-  padding: 60px;
-  font-size: 10px;
+  padding: 15px 15px 15px 15px;
+  margin-right: 300px;
+  font-size: 15px;
   font-family: sans-serif;
-  color: black
+  color: black;
+}
+
+.grid-box > div {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: powderblue;
+  text-align: left;
+  padding: 15px 15px 42.5px 15px;
+  margin-right: 300px;
+  font-size: 15px;
+  font-family: sans-serif;
+  color: black;
 }
 
 .button {
@@ -40,43 +92,110 @@
           margin: 4px 2px;
           cursor: pointer;
 }
-
 h1 {
     color: black;
     font-family: 'Lato', sans-serif;
     font-weight: 900;
     font-size: 50px;
 }
+.form {
+  width: 30%;
+  background-color: powderblue;
+  color: black;
+}
+.form > div {
+  background-color: powderblue;
+  text-align: left;
+  padding: 60px;
+  font-size: 10px;
+  font-family: sans-serif;
+  color: black;
+}
+.comments-list {
+  width: 100%;
+  background-color: powderblue;
+  margin: 0px;
+  padding: 0px;
+}
+.comments-list > div {
+  background-color: powderblue;
+  text-align: left;
+  padding: 0px;
+  font-size: 10px;
+  font-family: sans-serif;
+  color: black;
+}
+.info {
+  background-color: powderblue;
+  color: black;
+  border: 1px solid black;
+  padding-left: 10px;
+  width: 33.3%
+}
+.info > div {
+  padding-left: 0px;
+}
+
+.columns {
+  float: left;
+  width: 24.2%;
+  padding: 2px;
+  background-color: powderblue;
+}
+
+.control {
+  margin: 2px;
+  padding: 2px;
+}
+
+.control button {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 </style>
 
-<div class="h1">
-  <div class="item1"><h1>{{ object.title }}</h1></div>
-  <div class="item2">Description: {{ object.description }}</div>
-  <div class="item3">Price: {{ object.price }}</div>
+<div class="columns">
+  <div class ="grid-container">
+    <div class="item1"><h2>{{ object.title }}</h2></div>
+    <div class="item2"><div class="slider"></div></div>
+  </div>
 </div>
-<br> 
 
-<div class = 'h1'>
-<!-- authentication logic: -->
-      <a href = "{% url 'product-update' object.id %}" class = "float-right"><i class="fas fa-edit"></i></a>
-      <a href = "{% url 'product-delete' object.id %}" class = "float-right"><i class="fas fa-trash-alt"></i></a>
+<div class ="grid-box">
+    <div class="item3"><i class="fa fa-calendar" aria-hidden="true"></i> Date: {{ object.pub_date }}</div>  
+    <div class="item4"><i class="fa fa-eye" aria-hidden="true"></i> Views: {{ object.view_count }}</div>
+    <div class="item5"><i class="fa fa-filter" aria-hidden="true"></i> Category: {{ object.category }}</div>
+    <div class="item6"><i class="fa fa-usd" aria-hidden="true"></i> Price: ${{ object.price_in_SGD }}</div>
+    <div class="item7"><i class="fa fa-files-o" aria-hidden="true"></i> Multiple quantities: {{ object.this_product_has_multiple_quantities }}</div>
+    <div class="item8"><i class="fa fa-map-marker" aria-hidden="true"></i> Delivery location: {{ object.delivery_location }}</div>
+    <div class="item9"><i class="fa fa-user" aria-hidden="true"></i> Author: {{ object.author }}</div>
 </div>
+
+<br /> 
 
 <div class="form">
   <form action="" method = "post" novalidate>
     {% csrf_token %}
     {{ form.as_p }}            
-    <p><input type="submit" value="Submit"></p> 
+    <p><input class="button" type="submit" value="Submit"></p> 
   </form>
 </div>
-
+<br />
 
 <div class="comments-list">
         {% for each_comment in comments %}
         <div class="comment">
             <div class="info">
-                <p>{{ each_comment.author }}<span>   <span>{{ each_comment.created_on }}</span></p>
-                <p>{{ each_comment.comment }}</p>
+                <p style="font-size: 15px; color: red;">{{ each_comment.author }}<span>   <span>at {{ each_comment.created_on }}</span></p>
+                <p style="font-size: 15px;">{{ each_comment.comment }}</p>
             </div>   
         </div>
 
@@ -85,5 +204,46 @@ h1 {
                 <h3> There are no comments yet. </h3>
             </div>
         {% endfor %}
-    </div>
+</div>
+<br>
+<br>
+<iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.806464815039!2d103.77808461467792!3d1.290415299058816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1a54bcc446f1%3A0xe1e7c4fb5e8b36!2sPGP+House!5e0!3m2!1sen!2s!4v1561174890032!5m2!1sen!2s" 
+width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+<script>
+  var o = "{{ object.delivery_location }}";
+  if(o == 'ONL') {
+    document.getElementById("map").style.display='none';
+  }
+  else if(o == 'U') {
+    document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.782693160289!2d103.77087091467803!3d1.305485899047833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1af575f7ff17%3A0x1056d4b4bd4641c8!2sUniversity+Town%2C+NUS!5e0!3m2!1sen!2s!4v1561175710875!5m2!1sen!2s";
+  }
+  else if(o == 'KRMRT') {
+    document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.801486267624!2d103.78226797907699!3d1.2935860990611263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1a52319edb39%3A0x9a36ad159e134e84!2sKent+Ridge+MRT+Station!5e0!3m2!1sen!2s!4v1561199872701!5m2!1sen!2s";
+  }
+  else if(o == 'S') {
+    document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7977.595630116411!2d103.77509185258194!3d1.2959192962377317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1a56e999f249%3A0x859a7ca60c6ce39e!2sFaculty+of+Science%2C+Singapore!5e0!3m2!1sen!2s!4v1561199976727!5m2!1sen!2s";
+  }
+  else if(o == 'UHC') {
+    document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.792872924171!2d103.77439447907696!3d1.2990535990571603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1a581f3cd689%3A0xebce1c2fa4410281!2sUniversity+Health+Centre%2C+Singapore!5e0!3m2!1sen!2s!4v1561200073247!5m2!1sen!2s";
+  }
+  else if(o == 'M') {
+    document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.789048296241!2d103.77045837907697!3d1.3014739990554103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1afa50000073%3A0x582a621ea6f4ff8a!2sNUS+Museum!5e0!3m2!1sen!2s!4v1561200114151!5m2!1sen!2s";
+  }
+  else if(o == 'CLB') {
+    document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.796366591163!2d103.77106677907697!3d1.2968386990587686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1afe9835b3ef%3A0x71cfd09de700fc45!2sNUS+Central+Library!5e0!3m2!1sen!2s!4v1561200138723!5m2!1sen!2s";
+  }
+  else if(o == 'AS') {
+    document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.796366591163!2d103.77106677907697!3d1.2968386990587686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1af92e55da69%3A0x54195dfc4f1caf1e!2sNUS+Arts+%26+Social+Sciences!5e0!3m2!1sen!2s!4v1561200159542!5m2!1sen!2s";
+  }
+  else if(o == 'COM') {
+    document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7991254095045!2d103.771702279077!3d1.2950869990600533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1af8c7e4e75b%3A0x436963e22924394a!2sNUS+School+of+Computing!5e0!3m2!1sen!2s!4v1561200235687!5m2!1sen!2s";
+  }
+  else {
+    document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.803071847354!2d103.77198767907697!3d1.2925770990618692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1aff72797d93%3A0x46e392c21ec882ca!2sNUS+Business+School!5e0!3m2!1sen!2s!4v1561200263058!5m2!1sen!2s";
+  }
+</script>
+
+{% include "products/pagination_links.html" %}
+
 {% endblock %}

@@ -147,6 +147,19 @@ h1 {
   margin: 2px;
   padding: 2px;
 }
+
+.control button {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 </style>
 
 <div class="columns">
@@ -168,9 +181,9 @@ h1 {
 
 
 <div class ="control">
-  <button onclick="location.href = '{% url 'product-update' object.pk %}" id="myButton" class="button" >Update</button>
-  <button onclick="location.href = '{% url 'product-delete' object.pk %}" id="myButton" class="button" >Delete</button>
-  <button onclick="location.href = '{% url 'home' %}" id="myButton" class="button" >Back</button>
+  <a href = "{% url 'product-update' object.pk %}"><button>Update</button></a>
+  <a href = "{% url 'product-delete' object.pk %}"><button>Delete</button></a>
+  <a href = "{% url 'home' %}"><button>Back to home</button></a>
 </div>
 <br /> 
 
