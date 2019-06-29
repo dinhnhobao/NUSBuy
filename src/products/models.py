@@ -25,8 +25,8 @@ class Product(models.Model):
     #blank = True: optional, if blank then the default value is empty.
     image_link_1 = models.URLField(max_length = 1000, blank = True, default = '')
     image_link_2 = models.URLField(max_length = 1000, blank = True, default = '')
-    image_link_3 = models.URLField(max_length = 1000, blank = True, default = '')
-    image_link_4 = models.URLField(max_length = 1000, blank = True, default = '')
+    #image_link_3 = models.URLField(max_length = 1000, blank = True, default = '')
+    #image_link_4 = models.URLField(max_length = 1000, blank = True, default = '')
 
     category = models.ForeignKey('Category', on_delete = models.CASCADE, null = True, blank = True)
 
@@ -60,7 +60,7 @@ class Product(models.Model):
     #automatically generated
     pub_date = models.DateTimeField(auto_now_add=True)
     view_count = models.PositiveIntegerField(default=0)
-    author = models.ForeignKey(User, on_delete = models.CASCADE)
+    author = models.ForeignKey(User, on_delete = models.CASCADE, blank = True, null = True, default = '')
 
     def __str__(self):
         return self.title

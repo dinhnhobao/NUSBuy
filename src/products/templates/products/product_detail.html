@@ -17,7 +17,6 @@
       background: url("{{ object.image_link_1 }}");
     }
   }
-
 .item1 { grid-area: header; }
 .item2 { grid-area: image; }
 .item3 { grid-area: date; }
@@ -27,7 +26,6 @@
 .item7 { grid-area: multy; }
 .item8 { grid-area: deliver; }
 .item9 { grid-area: author; }
-
 .grid-container {
   display: grid;
   grid-template-areas:
@@ -43,7 +41,6 @@
   padding: 0px;
   width: 100%
 }
-
 .grid-container > div {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: powderblue;
@@ -54,7 +51,6 @@
   font-family: sans-serif;
   color: black;
 }
-
 .button {
           background-color: black;
           border: none;
@@ -67,20 +63,17 @@
           margin: 4px 2px;
           cursor: pointer;
 }
-
 h1 {
     color: black;
     font-family: 'Lato', sans-serif;
     font-weight: 900;
     font-size: 50px;
 }
-
 .form {
   width: 30%;
   background-color: powderblue;
   color: black;
 }
-
 .form > div {
   background-color: powderblue;
   text-align: left;
@@ -89,14 +82,12 @@ h1 {
   font-family: sans-serif;
   color: black;
 }
-
 .comments-list {
   width: 100%;
   background-color: powderblue;
   margin: 0px;
   padding: 0px;
 }
-
 .comments-list > div {
   background-color: powderblue;
   text-align: left;
@@ -105,7 +96,6 @@ h1 {
   font-family: sans-serif;
   color: black;
 }
-
 .info {
   background-color: powderblue;
   color: black;
@@ -113,7 +103,6 @@ h1 {
   padding-left: 10px;
   width: 33.3%
 }
-
 .info > div {
   padding-left: 0px;
 }
@@ -129,9 +118,9 @@ h1 {
   <div class="item7"><i class="fa fa-files-o" aria-hidden="true"></i> Multiple quantities: {{ object.this_product_has_multiple_quantities }}</div>
   <div class="item8"><i class="fa fa-map-marker" aria-hidden="true"></i> Delivery location: {{ object.delivery_location }}</div>
   <div class="item9"><i class="fa fa-user" aria-hidden="true"></i> Author: {{ object.author }}</div>
-  <button onclick="location.href = 'http://127.0.0.1:8000/post/{{ object.id }}/update/';" id="myButton" class="button" >Update</button>
-  <button onclick="location.href = 'http://127.0.0.1:8000/post/{{ object.id }}/delete/';" id="myButton" class="button" >Delete</button>
-  <button onclick="location.href = 'http://127.0.0.1:8000/';" id="myButton" class="button" >Back</button>
+  <button onclick="location.href = '{% url 'product-update' object.pk %}" id="myButton" class="button" >Update</button>
+  <button onclick="location.href = '{% url 'product-delete' object.pk %}" id="myButton" class="button" >Delete</button>
+  <button onclick="location.href = '{% url 'home' %}" id="myButton" class="button" >Back</button>
 </div>
 <br /> 
 

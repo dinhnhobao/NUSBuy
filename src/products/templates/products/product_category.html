@@ -55,7 +55,7 @@
      {% endfor %}
 </table>
 
-<button onclick="location.href = 'http://127.0.0.1:8000/products/create/';" id="myButton" class="button" >Create</button>
+<button onclick="location.href = '{% url 'home' %}" id="myButton" class="button" >Create</button>
 {% include 'products/pagination_links.html' %}
 
 {% endblock %}
