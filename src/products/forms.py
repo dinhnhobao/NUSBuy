@@ -14,19 +14,19 @@ class ProductForm(forms.ModelForm):
     '''
     image_link_1 = forms.CharField(
                         label = 'Primary image link',
-                        initial = 'https://www.nsrcel.org/wp-content/uploads/2018/01/product.png',
+                        initial = 'http://personal.psu.edu/xqz5228/jpg.jpg',
                         widget=forms.Textarea(
                                 attrs={
                                     "rows": 1,
                                     'cols': 60
                                 }
                             ),
-                        help_text = 'This is required. You can keep the sample image link above.'
+                        help_text = 'This is required. The system can only accept .jpg images as of now. Very sorry for the inconvenience!'
                         )
 
     image_link_2 = forms.CharField(
                         required=False,
-                        initial = 'https://www.mageplaza.com/assets/img/extensions/product-labels.png', 
+                        initial = 'https://media.alienwarearena.com/media/1327-m.jpg', 
                         widget=forms.Textarea(
                                 attrs={
                                     "rows": 1,
@@ -80,7 +80,7 @@ class ProductForm(forms.ModelForm):
                         )
     class Meta:
         model = Product
-        fields = [
+        fields = (
             'image_link_1',
             'image_link_2',
             #'image_link_3',
@@ -93,8 +93,8 @@ class ProductForm(forms.ModelForm):
             'this_product_has_multiple_quantities',
             'delivery_location',
             'extra_information',
-        ]
-        abstract = True
+            'author',
+        )
 
 class CommentForm(forms.ModelForm):
     comment = forms.CharField(
