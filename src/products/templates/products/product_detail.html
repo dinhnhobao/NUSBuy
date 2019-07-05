@@ -2,27 +2,10 @@
 
 {% block content %}
 <style>
-.single {
-  width: 300px;
-  height: 400px;
-  background: url("{{ object.image_link_1 }}");
+img {
+  max-width: 100%;
+  height: auto;
 }
-
-.slider{
-    width: 300px;
-    height: 400px;
-    background: url("{{ object.image_link_1 }}");
-    animation: slide 20s infinite;
-  }
-  
-@keyframes slide {
-    50%{
-      background: url("{{ object.image_link_2 }}");
-    }
-    100%{
-      background: url("{{ object.image_link_1 }}");
-    }
-  }
 .item1 { grid-area: header; }
 .item2 { grid-area: image; }
 .item3 { grid-area: date; }
@@ -45,7 +28,7 @@
   grid-gap: 0px;
   background-color: powderblue;
   padding: 0px;
-  width: 100%
+  width: 110%
 }
 
 .grid-box {
@@ -65,10 +48,9 @@
 }
 
 .grid-container > div {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: powderblue;
   text-align: left;
-  padding: 15px 15px 15px 15px;
+  padding: 15px 15px 0px 15px;
   margin-right: 300px;
   font-size: 15px;
   font-family: sans-serif;
@@ -144,14 +126,14 @@ h1 {
 
 .columns {
   float: left;
-  width: 24.2%;
+  width: 40%;
   padding: 2px;
   background-color: powderblue;
 }
 
 .control {
   margin: 2px;
-  padding: 2px;
+  padding: 80px 2px 2px 2px;
 }
 
 .control button {
@@ -171,7 +153,13 @@ h1 {
 <div class="columns">
   <div class ="grid-container">
     <div class="item1"><h2>{{ object.title }}</h2></div>
-    <div class="item2"><div class="slider"></div></div>
+    <div class="item2">
+      <div>
+        <button onclick="function_2()">Prev</button>
+        <button onclick="function_1()">Next</button>
+      </div>
+      <img class ="change" src="{{ object.image_link_1 }}">
+    </div>
   </div>
 </div>
 
@@ -257,9 +245,36 @@ width="600" height="450" frameborder="0" style="border:0" allowfullscreen></ifra
 </script>
 
 <script>
-  var t = "{{ object.image_link_2 }}";
+  {% comment %} var t = "{{ object.image_link_2 }}";
   if(t == '') {
     document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("slider")[0].className = "single";
+  } {% endcomment %}
+  var link_1 = "{{ object.image_link_1 }}";
+  var link_2 = "{{ object.image_link_2 }}";
+  var link_3 = "{{ object.image_link_3 }}";
+  var link_4 = "{{ object.image_link_4 }}";
+  var u = document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src;
+  function function_1() {
+    if(document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src == link_1 && link_2 != "") {
+      document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src = link_2;
+    }
+    else if(document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src == link_2 && link_3 != "") {
+      document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src = link_3;
+    }
+    else if(document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src == link_3 && link_4 != "") {
+      document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src = link_4;
+    }
+  }
+  function function_2() {
+    if(document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src == link_2) {
+      document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src = link_1;
+    }
+    if(document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src == link_3 && link_2 != "") {
+      document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src = link_2;
+    }
+    if(document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src == link_4 && link_3 != "") {
+      document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src = link_3;
+    }
   }
 </script>
 
