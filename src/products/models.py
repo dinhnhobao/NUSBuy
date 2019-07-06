@@ -22,12 +22,10 @@ class Category(models.Model):
 
 class Product(models.Model):
 
-    #image links (up to 4), img.bb is recommended
-    #blank = True: optional, if blank then the default value is empty.
     image_link_1 = models.URLField(max_length = 1000, blank = True, default = '')
     image_link_2 = models.URLField(max_length = 1000, blank = True, default = '')
-    #image_link_3 = models.URLField(max_length = 1000, blank = True, default = '')
-    #image_link_4 = models.URLField(max_length = 1000, blank = True, default = '')
+    image_link_3 = models.URLField(max_length = 1000, blank = True, default = '')
+    image_link_4 = models.URLField(max_length = 1000, blank = True, default = '')
 
     category = models.ForeignKey('Category', on_delete = models.CASCADE, null = True, blank = True)
 
