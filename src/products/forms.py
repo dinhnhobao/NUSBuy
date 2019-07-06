@@ -35,7 +35,7 @@ class ProductForm(forms.ModelForm):
                             ),
                         help_text = 'This is not required. However, our product detail page has additional effects if there are 2 images in the product listing. You can keep the sample image link as above.'
                         )
-    '''
+    
     image_link_3 = forms.CharField(
                         required=False,
                         help_text = 'Not required',
@@ -57,7 +57,7 @@ class ProductForm(forms.ModelForm):
                                 }
                             )
                         )
-    '''
+    
     title = forms.CharField(
                         label = 'Product title',
                         initial = 'This product',
@@ -83,8 +83,8 @@ class ProductForm(forms.ModelForm):
         fields = (
             'image_link_1',
             'image_link_2',
-            #'image_link_3',
-            #'image_link_4',
+            'image_link_3',
+            'image_link_4',
             'category',
             'title',
             'condition',
