@@ -251,32 +251,32 @@ h1 {
 width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 
 <script>
-  var o = "{{ object.delivery_location }}";
-  if(o == 'ONL') {
+  var o = "{{ object.delivery_location }}"; //o: delivery location
+  if(o == 'ONLINE') {
     document.getElementById("map").style.display='none';
   }
-  else if(o == 'U') {
+  else if(o == "Prince George Park's Residences/ KEVII Hall") {
     document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.782693160289!2d103.77087091467803!3d1.305485899047833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1af575f7ff17%3A0x1056d4b4bd4641c8!2sUniversity+Town%2C+NUS!5e0!3m2!1sen!2s!4v1561175710875!5m2!1sen!2s";
   }
-  else if(o == 'KRMRT') {
+  else if(o == 'Kent Ridge MRT') {
     document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.801486267624!2d103.78226797907699!3d1.2935860990611263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1a52319edb39%3A0x9a36ad159e134e84!2sKent+Ridge+MRT+Station!5e0!3m2!1sen!2s!4v1561199872701!5m2!1sen!2s";
   }
-  else if(o == 'S') {
+  else if(o == 'Science/ UHall') {
     document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7977.595630116411!2d103.77509185258194!3d1.2959192962377317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1a56e999f249%3A0x859a7ca60c6ce39e!2sFaculty+of+Science%2C+Singapore!5e0!3m2!1sen!2s!4v1561199976727!5m2!1sen!2s";
   }
-  else if(o == 'UHC') {
+  else if(o == 'UHC/ RVRC/ YIH') {
     document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.792872924171!2d103.77439447907696!3d1.2990535990571603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1a581f3cd689%3A0xebce1c2fa4410281!2sUniversity+Health+Centre%2C+Singapore!5e0!3m2!1sen!2s!4v1561200073247!5m2!1sen!2s";
   }
-  else if(o == 'M') {
+  else if(o == 'Museum/Raffles Hall') {
     document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.789048296241!2d103.77045837907697!3d1.3014739990554103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1afa50000073%3A0x582a621ea6f4ff8a!2sNUS+Museum!5e0!3m2!1sen!2s!4v1561200114151!5m2!1sen!2s";
   }
-  else if(o == 'CLB') {
+  else if(o == 'UTown') {
     document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.796366591163!2d103.77106677907697!3d1.2968386990587686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1afe9835b3ef%3A0x71cfd09de700fc45!2sNUS+Central+Library!5e0!3m2!1sen!2s!4v1561200138723!5m2!1sen!2s";
   }
-  else if(o == 'AS') {
+  else if(o == 'FASS/ Eusoff Hall/ Temasek Hall') {
     document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.796366591163!2d103.77106677907697!3d1.2968386990587686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1af92e55da69%3A0x54195dfc4f1caf1e!2sNUS+Arts+%26+Social+Sciences!5e0!3m2!1sen!2s!4v1561200159542!5m2!1sen!2s";
   }
-  else if(o == 'COM') {
+  else if(o == 'Business School/ Kent Ridge Hall/ Sheares Hall') {
     document.getElementById("map").src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7991254095045!2d103.771702279077!3d1.2950869990600533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1af8c7e4e75b%3A0x436963e22924394a!2sNUS+School+of+Computing!5e0!3m2!1sen!2s!4v1561200235687!5m2!1sen!2s";
   }
   else {
@@ -317,7 +317,5 @@ width="600" height="450" frameborder="0" style="border:0" allowfullscreen></ifra
     }
   }
 </script>
-
-{% include "products/pagination_links.html" %}
 
 {% endblock %}

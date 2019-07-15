@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^$', views.products_list, name = 'home'), #remember to use as_view() to render view
 
     #create C:
-    url(r'^post/create/$', views.PostCreate.as_view(), name = 'product-create'),
+    url(r'^post/create/$', views.product_create, name = 'product-create'),
 
     #read R:
     url(r'^post/(?P<pk>[\d]+)/$', views.PostDetail.as_view(), name = 'product-detail'), #learn regex

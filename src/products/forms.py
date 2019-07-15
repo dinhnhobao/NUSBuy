@@ -33,7 +33,7 @@ class ProductForm(forms.ModelForm):
                                     'cols': 60
                                 }
                             ),
-                        help_text = 'This is not required. However, our product detail page has additional effects if there are 2 images in the product listing. You can keep the sample image link as above.'
+                        help_text = 'This is not required. However, our product detail page has additional effects if there are more than 2 images in the product listing. You can keep the sample image link as above.'
                         )
     
     image_link_3 = forms.CharField(
@@ -93,7 +93,6 @@ class ProductForm(forms.ModelForm):
             'this_product_has_multiple_quantities',
             'delivery_location',
             'extra_information',
-            'author',
         )
 
 class CommentForm(forms.ModelForm):

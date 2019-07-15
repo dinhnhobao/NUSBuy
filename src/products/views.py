@@ -24,7 +24,7 @@ from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .permissions import IsOwnerOrReadOnly
-@method_decorator(login_required, name = 'dispatch') #dispatch: find get/post method, restrict
+'''
 class PostCreate(View):
     def get(self, request): #get the information in the form
         form = ProductForm
@@ -38,6 +38,22 @@ class PostCreate(View):
             return redirect(reverse('home')) #redirect to home
         #else:   
         return render(request, 'products/product_create.html', {'form': form}) #stay at the same page
+'''
+#@method_decorator(login_required, name = 'dispatch') #dispatch: find get/post method, restrict
+@login_required
+def product_create(request):
+    form = ProductForm(request.POST or None, request.FILES or None)
+    author = request.user
+    if request.method == "POST":
+        if form.is_valid():
+            form.instance.author = author
+            form.save()
+            #return redirect(reverse("product-detail", kwargs = {'pk': self.kwargs['pk']}}))
+            return redirect('home')
+    context = {
+        'form': form
+    }
+    return render(request, "products/product_create.html", context)
 
 @login_required
 def product_update(request, id = id):
@@ -64,9 +80,14 @@ def products_list(request):
     """
     Renders the polls_list.html template which lists all the
     currently available polls
+
+    author (filter), category (done), 
+    condition (filter), 
+    price_in_SGD (done), pub_date (done), this_product_has_multiple_quantities, title, view_count
     """
     products = Product.objects.get_queryset().order_by('id')
     search_term = '' #initialisation
+    ###sorting
     if 'title' in request.GET:
         products = products.order_by('title')
 
@@ -76,11 +97,34 @@ def products_list(request):
     if 'view_count' in request.GET:
         products = products.order_by('-view_count')
 
+    if 'price_increasing' in request.GET:
+        products = products.order_by('price_in_SGD')
+
+    if 'price_descending' in request.GET:
+        products = products.order_by('-price_in_SGD')
+    
+    ###
+
+    ###filter
+    
     if 'search' in request.GET:
         search_term = request.GET['search']
         products = products.filter(title__icontains=search_term)
 
-    paginator = Paginator(products, 3)
+    if 'condition_used' in request.GET:
+        products = products.filter(condition__exact = 'USED') #used items
+
+    if 'condition_new' in request.GET:
+        products = products.filter(condition__exact = 'N') #new items 
+
+    if 'multiple' in request.GET:
+        products = products.filter(this_product_has_multiple_quantities__exact = True) 
+
+    if 'unique' in request.GET:
+        products = products.filter(this_product_has_multiple_quantities__exact = False)
+    ###
+    LISTINGS_PER_PAGE = 6
+    paginator = Paginator(products, LISTINGS_PER_PAGE)
 
     page = request.GET.get('page')
     products = paginator.get_page(page) #specific chunk of products
@@ -88,8 +132,13 @@ def products_list(request):
     #Preserving Query Parameters When Using Paginator
     get_dict_copy = request.GET.copy()
     params = get_dict_copy.pop('page', True) and get_dict_copy.urlencode()
+    params = '&' + params if params else ''
 
-    context = {'posts': products, 'params': params, 'search_term': search_term}   
+    number_of_total_items = Product.objects.count()
+    context = {'posts': products, 'params': params, 'search_term': search_term,
+               'number_of_total_items': number_of_total_items,
+               'number_of_filtered_items': len(products)}
+    print(len(products))   
     return render(request, 'products/product_list.html', context)
 
 
@@ -115,7 +164,7 @@ class PostDisplay(SingleObjectMixin, View): #inherits from SingleObjectMixin Vie
         '''
         #override
         context = super(PostDisplay, self).get_context_data(**kwargs)
-        context['comments'] = Comment.objects.filter(listing = self.get_object()) 
+        context['comments'] = Comment.objects.filter(listing = self.get_object()).order_by('-created_on')
         #filter: filter out the comments that are for this post only
 
         #comment section for each post:

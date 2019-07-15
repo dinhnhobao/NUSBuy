@@ -27,31 +27,31 @@ class Product(models.Model):
     image_link_3 = models.URLField(max_length = 1000, blank = True, default = '')
     image_link_4 = models.URLField(max_length = 1000, blank = True, default = '')
 
-    category = models.ForeignKey('Category', on_delete = models.CASCADE, null = True, blank = True)
+    category = models.ForeignKey('Category', on_delete = models.CASCADE) #categorized
 
-    title = models.CharField(max_length = 255)
+    title = models.CharField(max_length = 255) #sort by name
 
     CONDITION_CHOICES = [
         ('N', 'New'),
         ('USED', 'Used'),
-    ]
-    condition = models.CharField(max_length = 255, choices = CONDITION_CHOICES, default = 'Not chosen')
-    price_in_SGD = models.DecimalField(decimal_places=2, max_digits=10000)
+    ] 
+    condition = models.CharField(max_length = 255, choices = CONDITION_CHOICES, default = 'Not chosen') #filter by condition?
+    price_in_SGD = models.DecimalField(decimal_places=2, max_digits=10000) #sort by price
     description = models.TextField(blank=True, null=True)
     this_product_has_multiple_quantities = models.BooleanField()
 
     LOCATION_CHOICES = [
-        ('ONL', 'ONLINE'),
-        ('PGP', "Prince George Park's Residences/ KEVII Hall"),
-        ('KRMRT', 'Kent Ridge MRT'),
-        ('S', 'Science/ UHall'),
-        ('UHC', 'UHC/ RVRC/ YIH'),
-        ('M', 'Museum/Raffles Hall'),
-        ('U', 'UTown'),
-        ('CLB', 'CLB/Engineering'),
-        ('AS', 'FASS/ Eusoff Hall/ Temasek Hall'),
-        ('COM', 'SoC'),
-        ('BIZ', 'Business School/ Kent Ridge Hall/ Sheares Hall'),
+        ('ONLINE', 'ONLINE'),
+        ("Prince George Park's Residences/ KEVII Hall", "Prince George Park's Residences/ KEVII Hall"),
+        ('Kent Ridge MRT', 'Kent Ridge MRT'),
+        ('Science/ UHall', 'Science/ UHall'),
+        ('UHC/ RVRC/ YIH', 'UHC/ RVRC/ YIH'),
+        ('Museum/Raffles Hall', 'Museum/Raffles Hall'),
+        ('UTown', 'UTown'),
+        ('CLB/Engineering', 'CLB/Engineering'),
+        ('FASS/ Eusoff Hall/ Temasek Hall', 'FASS/ Eusoff Hall/ Temasek Hall'),
+        ('SoC', 'SoC'),
+        ('Business School/ Kent Ridge Hall/ Sheares Hall', 'Business School/ Kent Ridge Hall/ Sheares Hall'),
     ]
     delivery_location = models.CharField(max_length = 255, choices = LOCATION_CHOICES, default = 'Not yet chosen')
     extra_information = models.TextField(blank = True, null = True)
@@ -59,7 +59,7 @@ class Product(models.Model):
     #automatically generated
     pub_date = models.DateTimeField(auto_now_add=True)
     view_count = models.PositiveIntegerField(default=0)
-    author = models.ForeignKey(User, on_delete = models.CASCADE, default = '')
+    author = models.ForeignKey(User, on_delete = models.CASCADE, default = '') #many-to-one
 
     def __str__(self):
         return self.title

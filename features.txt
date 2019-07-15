@@ -1,36 +1,3 @@
-Build a blog
-1) Details for each listing
-2) categories
-3) login-logout, create a new post-delete
-
-
-Video part 1, View
-1. READ: view all posts/listings with their information** in the listing page (don't need to go to individual posting) (DONE)
-2. CREATE: make a model in models.py, make a form based on some attributes in the model in forms.py
-           receive and put the new product on the listing page (DONE)
-3. not yet: how to have pre-determined categorisation (author & category) in the form (DONE)
-
-Video part 2.1 & 2.2, ListView
-1. Sort listing by pub_date, pub_date is automatically initiailised in models.py (DONE)
-    pub_date = models.DateTimeField(auto_now_add=True)
-    view_count = models.PositiveIntegerField(default=0) #how about view_count?
-2. set number of listings per page (DONE)
-3. view_count (DONE)
-4. redirecting after each CRUD operation (DONE)
-Video part 3
-1. Post & see comments (DONE)
-
-Video part 4
-Log-in - log-out views (DONE)
-Restrict access in class-based views (DONE)
-
-**but logic not yet implemented: cannot update/delete posts of another user. (DONE)
-**authentication completion 
-Video part 5
-List posts by category (DONE)
-
-Video part 6
-DONE
 ----------------------------------------------------------------------------
 **but logic not yet implemented: cannot update/delete posts of another user.
 **authentication completion
@@ -59,3 +26,9 @@ and give reasons why NUS students will prefer your app over Carousel.
 
 1) Share a product listing on social media platforms
 2) Ratings feature 
+
+----------------------------------------------------------------------------
+**but logic not yet implemented: cannot update/delete posts of another user.
+**authentication completion
+----------------------------------------------------------------------------
+Feedback from Milestone 2:
