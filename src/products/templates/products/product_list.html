@@ -112,6 +112,11 @@
           name = 'search'>
      <button class = 'btn btn-outline-success my-2 my-sm-0' type = 'submit'>Search</button>
 </form>
+
+<h3> You are logged in as {{ user }} </h3> <!-- sửa if else ở đây, nếu chưa log in thì ghi You are not logged in-->
+
+
+
 <div class="sort">
      <a
      href='{% url 'product-create' %}'
@@ -148,8 +153,9 @@
      class="btn btn-{% if 'price_descending' in request.GET %}warning{% else %}primary{% endif %}"
      ><button>Sort by price: high to low</button>
      </a>
-
+</div>
      
+<h4>
      <a
      href="?condition_used=True"
      class="btn btn-{% if 'condition_used' in request.GET %}warning{% else %}primary{% endif %}"
@@ -173,7 +179,7 @@
      class="btn btn-{% if 'unique' in request.GET %}warning{% else %}primary{% endif %}"
      ><button>See items with one quantity only</button>
      </a>
-</div>
+</h4>
 
 <h3> There are currently {{ number_of_total_items }} listings on NUSBuy. </h3>
 <h3> There are {{ number_of_filtered_items }} items as per requested. </h3>

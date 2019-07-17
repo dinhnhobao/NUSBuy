@@ -45,10 +45,19 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.amazon',
+    'allauth.socialaccount.providers.discord',
+    'allauth.socialaccount.providers.dropbox',
+    'allauth.socialaccount.providers.instagram',
+    'allauth.socialaccount.providers.openid',
+    'allauth.socialaccount.providers.telegram',
 
     # own
     'pages',
     'products',
+    'login',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +158,12 @@ AUTHENTICATION_BACKENDS = (
     # 'allauth' specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
 )
+
+LOGIN_REDIRECT_URL = '/'
+SOCIALACCOUNT_PROVIDERS = {
+    'telegram': {
+        'TOKEN': 'insert-token-received-from-botfather'
+    }
+}
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
