@@ -37,6 +37,7 @@
   width: 22.2%;
   padding: 2px;
   background-color: powderblue;
+  height: 600px;
 }
 
 .card {
@@ -172,6 +173,16 @@
             <div>
                 <h3> There are no product listings yet. </h3>
             </div>
-     {% endfor %}     
+     {% endfor %}  
+
+<script>
+  var tit = document.querySelectorAll("h2");
+  var i;
+  for (i = 0; i < tit.length; i++) {
+    if(tit[i].innerText.length > 20) {
+      tit[i].innerText = tit[i].innerText.substr(0, 20) + "...";
+    }
+  }
+</script>
 
 {% endblock %}

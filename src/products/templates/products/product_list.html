@@ -37,6 +37,7 @@
   width: 22.2%;
   padding: 2px;
   background-color: powderblue;
+  height: 600px;
 }
 
 .card {
@@ -101,6 +102,7 @@
     margin: 4px 2px;
     cursor: pointer;   
 }
+
 </style>
 
 <form class = 'form-inline my-2 my-lg-1'>
@@ -214,5 +216,15 @@
                 <h3> There are no product listings yet. </h3>
             </div>
      {% endfor %}     
+
+<script>
+  var tit = document.querySelectorAll("h2");
+  var i;
+  for (i = 0; i < tit.length; i++) {
+    if(tit[i].innerText.length > 20) {
+      tit[i].innerText = tit[i].innerText.substr(0, 20) + "...";
+    }
+  }
+</script>
 
 {% endblock %}

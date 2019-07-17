@@ -187,7 +187,9 @@ h1 {
             cursor: pointer;
             margin-top: -15px;
         }    
-  
+  .fb-share-button {
+    margin: 10px;
+  }
 </style>
 
 <div class="columns">
@@ -213,13 +215,31 @@ h1 {
     <div class="item9"><i class="fa fa-user" aria-hidden="true"></i> Author: {{ object.author }}</div>
 </div>
 
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
+
+<div class="fb-share-button" data-href="{% url 'product-detail' object.pk %}" data-layout="button" data-size="small"></div>
+
+<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <div class ="control">
   <a href = "{% url 'product-update' object.pk %}"><button>Update</button></a>
   <a href = "{% url 'product-delete' object.pk %}"><button>Delete</button></a>
   <a href = "{% url 'home' %}"><button>Back to home</button></a>
+  <input type="text" value="{% url 'product-detail' object.pk %}" class="myInput" style="display:none;">
+  <button onclick="thisFunction()">Copy</button>
 </div>
 <br /> 
+
+<script>
+function thisFunction() {
+  var copyText = document.getElementsByClassName("control")[0].getElementsByClassName("myInput")[0];
+  copyText.select();
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+</script>
 
 <div class="form">
   <form action="" method = "post" novalidate>

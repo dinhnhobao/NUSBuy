@@ -65,6 +65,7 @@ class ProductForm(forms.ModelForm):
                                 attrs={
                                     "rows": 1,
                                     'cols': 50
+                                    # 'maxlength': 20
                                 }
                             )
                         )
