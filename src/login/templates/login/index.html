@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 {% load socialaccount %}
 {% providers_media_js %}
 
@@ -7,10 +11,12 @@
     </head>
 
     <body>
-        <a href = "{% provider_login_url "google" %}"> Google Connect </a>
-        <a href = "{% provider_login_url "facebook" method="js_sdk" %}"> Facebook Connect </a>
-        <a href = "{% provider_login_url "github" %}"> Github Connect </a>
-        <a href = "{% provider_login_url "instagram" %}"> Instagram Connect </a>
-        <a href = "{% provider_login_url "discord" %}"> Discord Connect </a>
+        <a href = "{% provider_login_url "google" %}"> <button>Google Connect</button> </a>
+        <a href = "{% provider_login_url "facebook" method="js_sdk" %}"> <button>Facebook Connect</button>  </a>
+        <a href = "{% provider_login_url "github" %}"> <button>Github Connect</button> </a>
+        <a href = "{% provider_login_url "instagram" %}"> <button>Instagram Connect</button> </a>
+        <a href = "{% provider_login_url "discord" %}"> <button>Discord Connect</button> </a>
     </body>
 </html>
+
+{% endblock %}

@@ -63,7 +63,7 @@
             {% if user.is_authenticated %}
                 <p><a href="{% url 'logout' %}"><button class= "auth">&#128274 Logout</button></a></p>
             {% else %}
-                <p><a href="{% url 'login' %}"><button class = "auth">&#128275 Login</button></a></p>
+                <p><a href="{% url 'authentication' %}"><button class = "auth">&#128275 Login</button></a></p>
             {% endif %}
         
         {% block content %}
