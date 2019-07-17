@@ -226,9 +226,10 @@
 <script>
   var tit = document.querySelectorAll("h2");
   var i;
+  const limit = 20;
   for (i = 0; i < tit.length; i++) {
-    if(tit[i].innerText.length > 20) {
-      tit[i].innerText = tit[i].innerText.substr(0, 20) + "...";
+    if(tit[i].innerText.length > limit) {
+      tit[i].innerText = tit[i].innerText.substr(0, limit) + "...";
     }
   }
 </script>
