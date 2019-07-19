@@ -212,8 +212,58 @@ h1 {
     <div class="item6"><i class="fa fa-usd" aria-hidden="true"></i> Price: ${{ object.price_in_SGD }}</div>
     <div class="item7"><i class="fa fa-files-o" aria-hidden="true"></i> Multiple quantities: {{ object.this_product_has_multiple_quantities }}</div>
     <div class="item8"><i class="fa fa-map-marker" aria-hidden="true"></i> Delivery location: {{ object.delivery_location }}</div>
-    <div class="item9"><i class="fa fa-user" aria-hidden="true"></i> Author: {{ object.author }}</div>
+    <div class="item9">
+      <i class="fa fa-user" aria-hidden="true"></i> Author: {{ object.author }}
+        {% for account in object.author.socialaccount_set.all %}
+          <h4> The author logged in via {{ account.provider }}. </h4>
+
+          {% if account.get_avatar_url %}
+            <p><img width="50" height="50" src="{{ account.get_avatar_url }}" /></p>
+          {% endif %}
+
+          {% if account.extra_data.email %}
+            <p> E-mail: {{ account.extra_data.email }} </p>
+          {% endif %}
+
+          {% if account.extra_data.full_name %}
+            <p> Full name: {{ account.extra_data.full_name }} </p>
+          {% endif %}
+
+          {% if account.extra_data.username %}
+            <p> Full name: {{ account.extra_data.username }} </p>
+          {% endif %}
+
+          {% if account.extra_data.bio %}
+            <p> Bio: {{ account.extra_data.bio }} </p>
+          {% endif %}
+
+          {% if account.extra_data.name %}
+            <p> Name: {{ account.extra_data.name }} </p>
+          {% endif %}
+
+          {% if account.extra_data.company %}
+            <p> Company: {{ account.extra_data.company }} </p>
+          {% endif %}
+
+          {% if account.extra_data.blog %}
+            <p> Blog: {{ account.extra_data.blog }} </p>
+          {% endif %}
+
+          {% if account.extra_data.location %}
+            <p> Location: {{ account.extra_data.location }}{{ account.extra_data.location.name }} </p>
+          {% endif %}
+
+          {% if account.extra_data.given_name %}
+            <p> name: {{ account.extra_data.name }}, or {{ account.extra_data.given_name }} {{ account.extra_data.family_name }} </p>
+          {% endif %}
+
+          {% if account.extra_data.counts.follows %}
+            <p> Number of Follows: {{ account.extra_data.counts.follows }}, Number of Followers:  {{ account.extra_data.counts.followed_by }} </p>
+          {% endif %}
+        {% endfor %}
+    </div>
 </div>
+
 
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>

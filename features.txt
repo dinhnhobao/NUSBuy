@@ -35,20 +35,17 @@ bugs:
 Must obtain new google authentication key on production
 authorisation callback URLs is different for each website, 
 some website has strict restrictions (e.g. facebook https only, localhost cannot, etc.)
-
-
+https://axiacore.com/blog/how-retrieve-facebook-extra-info-from-django-534/
+***The redirect_url specifies where we redirect users after 
+they have chosen whether or not to authenticate your application.
 Feedback from Milestone 2:
 
-(bug +)User interface is only ok
-UX/UI is also a plausible consideration, since there is a lot of empty space that could be utilized to minimize scrolling and the current design looks a little bare."
-"Product Page: I think it would be better for users to manually 
-click on each picture as they might want to have a closer look on each pictures."
-
+(assigned) UI
 (bug +)
 hard-coding Google Maps
 
 (bug +)
-iews can be manipulated unless you have a way to prevent that (needs clarification)
+views can be manipulated unless you have a way to prevent that (needs clarification)
 whilst price could compliment the search function so you can sort by prices for a particular product 
 (since price alone would be useless if there are different products).
 
@@ -68,8 +65,7 @@ help to check credibility, and the implementation of QR code payment
 would make it easy for users to purchase the items from the seller.
 "
 (feature +) what attributes do we take from API apart from name
-***The redirect_url specifies where we redirect users after 
-they have chosen whether or not to authenticate your application.
+
 
 
 --------------

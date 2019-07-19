@@ -89,10 +89,20 @@
           name = 'search'>
      <button class = 'btn btn-outline-success my-2 my-sm-0' type = 'submit'>Search</button>
 </form>
+ 
+{% if user %}
+    <h3>Welcome, {{ user.username }} {{ user.name }}</h3>
+    {% for account in user.socialaccount_set.all %}
+        <h4> You logged in via {{ account.provider }}. </h4>
+        {% if account.get_avatar_url %}
+          <p><img width="50" height="50" src="{{ account.get_avatar_url }}" /></p>
+        {% endif %}
 
-<h3> You are logged in as {{ user }} </h3> <!-- sửa if else ở đây, nếu chưa log in thì ghi You are not logged in-->
-
-
+        {% if account.extra_data.username %}
+          <p>Username: {{ account.extra_data.username }}</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
 
 <div class="sort">
      <a
@@ -103,31 +113,26 @@
 
      <a
      href="?title=True"
-     class="btn btn-{% if 'title' in request.GET %}warning{% else %}primary{% endif %}"
      ><button>Sort by name</button>
      </a>
 
      <a
      href="?pub_date=True"
-     class="btn btn-{% if 'pub_date' in request.GET %}warning{% else %}primary{% endif %}"
      ><button>Sort by publish date</button>
      </a>
 
      <a
      href="?view_count=True"
-     class="btn btn-{% if 'view_count' in request.GET %}warning{% else %}primary{% endif %}"
      ><button>Sort by view count</button>
      </a>
 
      <a
      href="?price_increasing=True"
-     class="btn btn-{% if 'price_increasing' in request.GET %}warning{% else %}primary{% endif %}"
      ><button>Sort by price: low to high</button>
      </a>
 
      <a
      href="?price_descending=True"
-     class="btn btn-{% if 'price_descending' in request.GET %}warning{% else %}primary{% endif %}"
      ><button>Sort by price: high to low</button>
      </a>
 </div>
@@ -135,25 +140,21 @@
 <h4>
      <a
      href="?condition_used=True"
-     class="btn btn-{% if 'condition_used' in request.GET %}warning{% else %}primary{% endif %}"
      ><button>Only see items already used</button>
      </a>
 
      <a
      href="?condition_new=True"
-     class="btn btn-{% if 'condition_new' in request.GET %}warning{% else %}primary{% endif %}"
      ><button>Only see new items</button>
      </a>
 
      <a
      href="?multiple=True"
-     class="btn btn-{% if 'multiple' in request.GET %}warning{% else %}primary{% endif %}"
      ><button>See items with multiple quantities</button>
      </a>
 
      <a
      href="?unique=True"
-     class="btn btn-{% if 'unique' in request.GET %}warning{% else %}primary{% endif %}"
      ><button>See items with one quantity only</button>
      </a>
 </h4>

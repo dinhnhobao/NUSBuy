@@ -24,21 +24,7 @@ from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .permissions import IsOwnerOrReadOnly
-'''
-class PostCreate(View):
-    def get(self, request): #get the information in the form
-        form = ProductForm
-        return render(request, 'products/product_create.html', {'form': form})
-
-    def post(self, request): #create a post
-        form = ProductForm(request.POST)
-        form.author = request.user #set author as the user
-        if form.is_valid():
-            form.save() #save the form
-            return redirect(reverse('home')) #redirect to home
-        #else:   
-        return render(request, 'products/product_create.html', {'form': form}) #stay at the same page
-'''
+from allauth.socialaccount.models import SocialAccount
 #@method_decorator(login_required, name = 'dispatch') #dispatch: find get/post method, restrict
 @login_required
 def product_create(request):
@@ -123,7 +109,7 @@ def products_list(request):
     if 'unique' in request.GET:
         products = products.filter(this_product_has_multiple_quantities__exact = False)
     ###
-    LISTINGS_PER_PAGE = 6
+    LISTINGS_PER_PAGE = 8
     paginator = Paginator(products, LISTINGS_PER_PAGE)
 
     page = request.GET.get('page')
@@ -138,7 +124,10 @@ def products_list(request):
     context = {'posts': products, 'params': params, 'search_term': search_term,
                'number_of_total_items': number_of_total_items,
                'number_of_filtered_items': len(products)}
-    print(len(products))   
+    ###
+
+    #user's data
+
     return render(request, 'products/product_list.html', context)
 
 
@@ -236,3 +225,6 @@ class PostCategory(ListView):
 #report a bug view
 def report_bug(request):
     return render(request, 'products/report_bug.html')
+
+def login_view(request):
+    return render(request, '../../login/templates/login/index.html')

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+
+{% if user %}
+    <!-- User model attributes -->
+    <h3>{{ user.username }} </h3>
+    <p> {{ user.first_name }} {{ user.last_name }} </p>
+    <p> {{ user.email }} </p>
+    <p> {{ user.last_login }} </p>
+    <p> {{ user.date_joined }} </p>
+
+    <h4> Other information known: </h4>
+    <!-- SocialAccount model attributes -->
+    {% for account in user.socialaccount_set.all %}
+        <h5 style="text-transform:capitalize;">{{ account.provider }} account data</h5>
+        {% if account.get_avatar_url %}
+            <p><img width="50" height="50" src="{{ account.get_avatar_url }}" /></p>
+        {% endif %}
+
+        {% if account.extra_data.email %}
+            <p> E-mail: {{ account.extra_data.email }} </p>
+        {% endif %}
+
+        {% if account.extra_data.full_name %}
+            <p> Full name: {{ account.extra_data.full_name }} </p>
+        {% endif %}
+
+        {% if account.extra_data.username %}
+            <p> Full name: {{ account.extra_data.username }} </p>
+        {% endif %}
+
+        {% if account.extra_data.bio %}
+            <p> Bio: {{ account.extra_data.bio }} </p>
+        {% endif %}
+
+        {% if account.extra_data.name %}
+            <p> name: {{ account.extra_data.name }} </p>
+        {% endif %}
+
+        {% if account.extra_data.company %}
+            <p> Company: {{ account.extra_data.company }} </p>
+        {% endif %}
+
+        {% if account.extra_data.blog %}
+            <p> Blog: {{ account.extra_data.blog }} </p>
+        {% endif %}
+
+        {% if account.extra_data.location %}
+            <p> Location: {{ account.extra_data.location }}{{ account.extra_data.location.name }} </p>
+        {% endif %}
+
+        {% if account.extra_data.given_name %}
+            <p> name: {{ account.extra_data.name }}, or {{ account.extra_data.given_name }} {{ account.extra_data.family_name }} </p>
+        {% endif %}
+
+        {% if account.extra_data.counts.follows %}
+            <p> Number of Follows: {{ account.extra_data.counts.follows }}, Number of Followers:  {{ account.extra_data.counts.followed_by }} </p>
+        {% endif %}
+    {% endfor %}
+
+{% endif %}
+ 
+{% endblock %}
