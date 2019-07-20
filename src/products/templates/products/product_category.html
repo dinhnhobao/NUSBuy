@@ -47,7 +47,7 @@
   margin: auto;
   text-align: center;
   font-family: arial;
-  background-color: powderblue;
+  background-color: azure;
   color: black;
 }
 
@@ -114,26 +114,26 @@
      <button class = 'btn btn-outline-success my-2 my-sm-0' type = 'submit'>Search</button>
 </form>
 <div class="sort">
-     <a
-     href='{% url 'product-create' %}'
-     ><button>Create a listing</button>
-     </a>
-     <h5></h5>
-     <a
-     href="?title=True"
+     <select name="Sort" onchange="location = this.value;">
+    <option>------Sort-------</option>
+     <option
+     value="?title=True"
      class="btn btn-{% if 'title' in request.GET %}warning{% else %}primary{% endif %}"
-     ><button>Sort by name</button>
-     </a>
-     <a
-     href="?pub_date=True"
+     >Sort by name
+     </option>
+
+     <option
+     value="?pub_date=True"
      class="btn btn-{% if 'pub_date' in request.GET %}warning{% else %}primary{% endif %}"
-     ><button>Sort by publish date</button>
-     </a>          
-     <a
-     href="?view_count=True"
+     >Sort by publish date
+     </option>
+
+     <option
+     value="?view_count=True"
      class="btn btn-{% if 'view_count' in request.GET %}warning{% else %}primary{% endif %}"
-     ><button>Sort by view count</button>
-     </a>
+     >Sort by view count
+     </option>
+  </select>
 </div>
 
 <div class="pagination">

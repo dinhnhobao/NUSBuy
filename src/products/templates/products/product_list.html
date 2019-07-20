@@ -22,7 +22,7 @@
   margin: auto;
   text-align: center;
   font-family: arial;
-  background-color: powderblue;
+  background-color: azure;
   color: black;
 }
 
@@ -78,6 +78,9 @@
     cursor: pointer;   
 }
 
+select {
+     font-size: 15px;
+}
 </style>
 
 <form class = 'form-inline my-2 my-lg-1'>
@@ -111,53 +114,66 @@
      </a>
      <h5></h5>
 
-     <a
-     href="?title=True"
-     ><button>Sort by name</button>
-     </a>
+<select name="Sort" onchange="location = this.value;">
+    <option>------Sort-------</option>
+     <option
+     value="?title=True"
+     class="btn btn-{% if 'title' in request.GET %}warning{% else %}primary{% endif %}"
+     >Sort by name
+     </option>
 
-     <a
-     href="?pub_date=True"
-     ><button>Sort by publish date</button>
-     </a>
+     <option
+     value="?pub_date=True"
+     class="btn btn-{% if 'pub_date' in request.GET %}warning{% else %}primary{% endif %}"
+     >Sort by publish date
+     </option>
 
-     <a
-     href="?view_count=True"
-     ><button>Sort by view count</button>
-     </a>
+     <option
+     value="?view_count=True"
+     class="btn btn-{% if 'view_count' in request.GET %}warning{% else %}primary{% endif %}"
+     >Sort by view count
+     </option>
 
-     <a
-     href="?price_increasing=True"
-     ><button>Sort by price: low to high</button>
-     </a>
+     <option
+     value="?price_increasing=True"
+     class="btn btn-{% if 'price_increasing' in request.GET %}warning{% else %}primary{% endif %}"
+     >Sort by price: low to high
+     </option>
 
-     <a
-     href="?price_descending=True"
-     ><button>Sort by price: high to low</button>
-     </a>
+     <option
+     value="?price_descending=True"
+     class="btn btn-{% if 'price_descending' in request.GET %}warning{% else %}primary{% endif %}"
+     >Sort by price: high to low
+     </option>
+</select>
+
+<select name="see" onchange="location = this.value;">  
+    <option>------See items-------</option>
+     <option
+     value="?condition_used=True"
+     class="btn btn-{% if 'condition_used' in request.GET %}warning{% else %}primary{% endif %}"
+     >Only see items already used
+     </option>
+
+     <option
+     value="?condition_new=True"
+     class="btn btn-{% if 'condition_new' in request.GET %}warning{% else %}primary{% endif %}"
+     >Only see new items
+     </option>
+
+     <option
+     value="?multiple=True"
+     class="btn btn-{% if 'multiple' in request.GET %}warning{% else %}primary{% endif %}"
+     >See items with multiple quantities
+     </option>
+
+     <option
+     value="?unique=True"
+     class="btn btn-{% if 'unique' in request.GET %}warning{% else %}primary{% endif %}"
+     >See items with one quantity only
+     </option>
+</select>
 </div>
-     
-<h4>
-     <a
-     href="?condition_used=True"
-     ><button>Only see items already used</button>
-     </a>
-
-     <a
-     href="?condition_new=True"
-     ><button>Only see new items</button>
-     </a>
-
-     <a
-     href="?multiple=True"
-     ><button>See items with multiple quantities</button>
-     </a>
-
-     <a
-     href="?unique=True"
-     ><button>See items with one quantity only</button>
-     </a>
-</h4>
 
 <h3> There are currently {{ number_of_total_items }} listings on NUSBuy. </h3>
 <h3> There are {{ number_of_filtered_items }} items as per requested. </h3>
@@ -165,8 +181,8 @@
 <div class="pagination">
     <span class="step-links">
         {% if posts.has_previous %}
-            <a href="?page=1&{{params}}"><button>&laquo; first</button></a>
-            <a href="?page={{ posts.previous_page_number }}&{{params}}"><button>previous</button></a>
+            <a href="?page=1&{{params}}"><button style="padding: 5px; color: black; font-size:24px; border: none; background-color: powderblue;"><i class="fa fa-angle-double-left"></i></button></a>
+            <a href="?page={{ posts.previous_page_number }}&{{params}}"><button style="padding: 5px; color: black; font-size:24px; border: none; background-color: powderblue;"><i class="fa fa-angle-left"></i></button></a>
         {% endif %}
 
         <span class="current">
@@ -174,8 +190,8 @@
         </span>
 
         {% if posts.has_next %}
-            <a href="?page={{ posts.next_page_number }}&{{params}}"><button>next</button></a>
-            <a href="?page={{ posts.paginator.num_pages }}&{{params}}"><button>last &raquo;</button></a>
+            <a href="?page={{ posts.next_page_number }}&{{params}}"><button style="padding: 5px; color: black; font-size:24px; border: none; background-color: powderblue;"><i class="fa fa-angle-right"></i></button></a>
+            <a href="?page={{ posts.paginator.num_pages }}&{{params}}"><button style="padding: 5px; color: black; font-size:24px; border: none; background-color: powderblue;"><i class="fa fa-angle-double-right"></i></button></a>
         {% endif %}
     </span>
 </div>
