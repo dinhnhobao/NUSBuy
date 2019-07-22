@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^$', views.products_list, name = 'home'), #remember to use as_view() to render view
     url(r'^report_bug/$', views.report_bug, name = 'report'),
     url(r'authentication/', TemplateView.as_view(template_name = 'login/index.html'), name = 'authentication'),
+    url(r'^chat/', include('chat.urls')),
 ]

@@ -6,17 +6,81 @@
 {% providers_media_js %}
 
 <html>
-    <head>
-        <title> Google Registration </title>
-    </head>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<style>
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.col {
+  float: left;
+  width: 50%;
+  margin: auto;
+  padding: 0 5px;
+  margin-top: 6px;
+}
 
-    <body>
-        <a href = "{% provider_login_url "google" %}"> <button>Google Connect</button> </a>
-        <a href = "{% provider_login_url "facebook" method="js_sdk" %}"> <button>Facebook Connect</button>  </a>
-        <a href = "{% provider_login_url "github" %}"> <button>Github Connect</button> </a>
-        <a href = "{% provider_login_url "instagram" %}"> <button>Instagram Connect</button> </a>
-        <a href = "{% provider_login_url "discord" %}"> <button>Discord Connect</button> </a>
-    </body>
+.btn {
+  width: 300px;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+}
+.fb {
+  background-color: #3B5998;
+  color: white;
+}
+
+.github {
+  background-color: #333;
+  color: white;
+}
+
+.google {
+  background-color: #dd4b39;
+  color: white;
+}
+
+.insta {
+  background-color: #e1306c;
+  color: white;
+}
+
+.discord{
+  background-color: #99aab5;
+  color: white;
+}
+</style>
+
+<body>
+<div class="col">
+	<a href="{% provider_login_url "facebook" method="js_sdk" %}" class="fb btn">
+    	<i class="fab fa-facebook fa-fw"></i> Login with Facebook
+    </a>
+    <a href="{% provider_login_url "github" %}" class="github btn">
+      <i class="fab fa-github fa-fw"></i> Login with Github
+    </a>
+    <a href="{% provider_login_url "google" %}" class="google btn">
+      <i class="fab fa-google fa-fw"></i> Login with Google
+    </a>
+    <a href="{% provider_login_url "instagram" %}" class="insta btn">
+    	<i class="fab fa-instagram fa-fw"></i> Login with Instagram
+     </a>
+    <a href="{% provider_login_url "discord" %}" class="discord btn">
+        <i class="fab fa-discord fa-fw"></i> Login with Discord
+    </a>
+</div>
+</body>
+
 </html>
+
 
 {% endblock %}
