@@ -73,3 +73,13 @@ Must obtain new google authentication key on production
 authorisation callback URLs is different for each website: the URL of your application appended with the path different for each website
 some website has strict restrictions (e.g. facebook https only, localhost cannot, etc.)
 https://github.com/pennersr/django-allauth/blob/master/docs/providers.rst
+
+
+https://bootsnipp.com/snippets/exR5v chat.html
+
+json serialising of the username
+reverse order of messages
+functionalities
+swtich channels
+
+React
