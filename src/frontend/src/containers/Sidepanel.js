@@ -168,10 +168,6 @@ class Sidepanel extends React.Component {
             <i className="fa fa-user-plus fa-fw" aria-hidden="true" />
             <span>Create chat</span>
           </button>
-          <button id="settings">
-            <i className="fa fa-cog fa-fw" aria-hidden="true" />
-            <span>Settings</span>
-          </button>
         </div>
       </div>
     );
