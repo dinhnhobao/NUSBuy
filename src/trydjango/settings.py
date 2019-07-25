@@ -49,12 +49,17 @@ INSTALLED_APPS = [
     #'allauth.socialaccount.providers.google',
     #'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.github',
-    #'allauth.socialaccount.providers.amazon',
-    #'allauth.socialaccount.providers.discord',
-    #'allauth.socialaccount.providers.dropbox',
-    #'allauth.socialaccount.providers.instagram',
-    #'allauth.socialaccount.providers.openid',
-    #'allauth.socialaccount.providers.telegram',
+    'allauth.socialaccount.providers.amazon',
+    'allauth.socialaccount.providers.discord',
+    'allauth.socialaccount.providers.dropbox',
+    'allauth.socialaccount.providers.instagram',
+    'allauth.socialaccount.providers.openid',
+    'allauth.socialaccount.providers.telegram',
+    'corsheaders',
+    'rest_auth',
+    'rest_auth.registration',
+    'rest_framework',
+    'rest_framework.authtoken',
 
     # own
     'pages',
@@ -63,6 +68,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -191,3 +197,22 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:1234',
+    'http://10.0.0.8:1234',
+)
+
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_VERIFICATION = 'none'

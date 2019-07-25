@@ -64,20 +64,21 @@ class PageContextMixin():
         
 def products_list(request):
     """
-    Renders the polls_list.html template which lists all the
+    Renders the products/product_list.html template which lists all the
     currently available polls
-
-    author (filter), category (done), 
-    condition (filter), 
-    price_in_SGD (done), pub_date (done), this_product_has_multiple_quantities, title, view_count
     """
     products = Product.objects.get_queryset().order_by('id')
-    search_term = '' #initialisation
-    ###sorting
+
+    #search bar
+    search_term = request.GET.get('search_term')
+    if search_term:
+        products = products.filter(title__icontains=search_term)
+
+    #sorting
     if 'title' in request.GET:
         products = products.order_by('title')
 
-    if 'pub_date' in request.GET:
+    elif 'pub_date' in request.GET:
         products = products.order_by('-pub_date')
 
     if 'view_count' in request.GET:
@@ -89,14 +90,9 @@ def products_list(request):
     if 'price_descending' in request.GET:
         products = products.order_by('-price_in_SGD')
     
-    ###
+    #
 
-    ###filter
-    
-    if 'search' in request.GET:
-        search_term = request.GET['search']
-        products = products.filter(title__icontains=search_term)
-
+    #filter
     if 'condition_used' in request.GET:
         products = products.filter(condition__exact = 'USED') #used items
 
@@ -109,13 +105,15 @@ def products_list(request):
     if 'unique' in request.GET:
         products = products.filter(this_product_has_multiple_quantities__exact = False)
     ###
+
+    #pagination:
     LISTINGS_PER_PAGE = 8
     paginator = Paginator(products, LISTINGS_PER_PAGE)
 
     page = request.GET.get('page')
     products = paginator.get_page(page) #specific chunk of products
 
-    #Preserving Query Parameters When Using Paginator
+    ###Preserving Query Parameters When Using Paginator
     get_dict_copy = request.GET.copy()
     params = get_dict_copy.pop('page', True) and get_dict_copy.urlencode()
     params = '&' + params if params else ''
@@ -127,9 +125,12 @@ def products_list(request):
     ###
 
     #user's data
+    print('---------------')
+    print(request.GET)
+    print('---------------')
 
     return render(request, 'products/product_list.html', context)
-
+    
 
 class PostDisplay(SingleObjectMixin, View): #inherits from SingleObjectMixin View instead
     #SingleObjectMixin provides the ability to retrieve a single object for further manipulation

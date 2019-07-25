@@ -83,3 +83,12 @@ functionalities
 swtich channels
 
 React
+https://ant.design/components/form/
+------------------------------------------------------------------------------------------------------------
+
+Deadline Milestone3: 29 July (next Tuesday)
+1. Fix filter/sorting (Duc, hard)
+2. Fix Chat Authentication, url problems (THURSDAY, 25 JULY MORNING + NIGHT)
+3. Improve UI (Duc)
+4. testing (mechanical stuffs, FRIDAY)
+5. deploy for production (Monday+)
