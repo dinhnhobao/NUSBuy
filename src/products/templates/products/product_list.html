@@ -3,22 +3,30 @@
 {% block content %}
      
 <style>
+body {
+  max-width: 77%;
+}
+
 * {
   box-sizing: border-box;
+}
+
+p {
+  font-size: 12px;
 }
 
 .columns {
   float: left;
   width: 22.2%;
   padding: 2px;
-  background-color: powderblue;
-  height: 600px;
+  background-color: whitesmoke;
+  height: 550px;
 }
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 300px;
-  height: 530px;
+  width: 230px;
+  height: 488px;
   margin: auto;
   text-align: center;
   font-family: arial;
@@ -35,6 +43,7 @@
   border: none;
   outline: 0;
   padding: 12px;
+  margin-left: 0px;
   color: black;
   background-color: orange;
   text-align: center;
@@ -81,6 +90,30 @@
 select {
      font-size: 15px;
 }
+
+#seek {
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: black;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+#inp {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.welcome {
+  background-color: white;
+  padding: 10px;
+  width: 35%;
+  border: 1px solid Silver;
+}
 </style>
 
 <form method = "GET">
@@ -88,10 +121,11 @@ select {
           name = 'search_term'
           value = "{{request.GET.search_term}}"
           placeholder= "search..">
-          <button class="btn btn-success" type = "submit">Search</button>
+     <button id= "seek" class = 'btn btn-outline-success my-2 my-sm-0' type = 'submit'><i class="fa fa-search"></i></button>
 </form>
  
-{% if user %}
+{% if user.username == 'AnonymousUser' or user.name == 'AnonymousUser' %}
+  <div class= "welcome">
     <h3>Welcome, {{ user.username }} {{ user.name }}</h3>
     {% for account in user.socialaccount_set.all %}
         <h4> You logged in via {{ account.provider }}. </h4>
@@ -103,17 +137,22 @@ select {
           <p>Username: {{ account.extra_data.username }}</p>
         {% endif %}
     {% endfor %}
+  </div>
+
+    <h3> See information that you provided to our website
+        <a href="{% url 'user-details' %}"><button style="font-family: Comic Sans MS, cursive, sans-serif; background-color: orange;">here</button></a>
+    </h3>
 {% endif %}
 
 <div class="sort">
      <a
      href='{% url 'product-create' %}'
-     ><button>Create a listing</button>
+     ><button style="font-family: Comic Sans MS, cursive, sans-serif; background-color: orange;">CREATE A LISTING</button>
      </a>
      <h5></h5>
 
 <select name="Sort" onchange="location = this.value;">
-    <option>------Sort-------</option>
+    <option>--------------Sort---------------</option>
      <option
      value="{{params}}?title=True{{params}}"
      >Sort by name
@@ -141,7 +180,7 @@ select {
 </select>
 
 <select name="see" onchange="location = this.value;">  
-    <option>------See items-------</option>
+    <option>----------------See items-----------------</option>
      <option
      value="?condition_used=True{{params}}"
      >Only see items already used
@@ -163,10 +202,12 @@ select {
      </option>
 </select>
 </div>
-
+<br>
+<div class="welcome">
 <h3> There are currently {{ number_of_total_items }} listings on NUSBuy. </h3>
 <h3> There are {{ number_of_filtered_items }} items as per requested. </h3>
-
+</div>
+<br>
 <div class="pagination">
     <span class="step-links">
         {% if posts.has_previous %}
@@ -184,22 +225,22 @@ select {
         {% endif %}
     </span>
 </div>
-
+<br>
 
 {% for instance in posts %}
      <div class="columns">
           <div class="card">
-  	          <img src="{{ instance.image_link_1 }}" alt="Product" style="height:300px; width:100%;">
+  	          <img src="{{ instance.image_link_1 }}" alt="Product" style="height:240px; width:100%;">
   	          <h2>{{ instance.title }}</h2>
   	          <p class="price">${{ instance.price_in_SGD }}</p>
   	          <p>Category: {{ instance.category }}</p>
                <p>Views: {{ instance.view_count }}</p>
-               <p><a href = "{% url 'product-by-category' instance.category.pk %}"><h4>Same category</h4></a></p>
-  	          <p><a href="{% url 'product-detail' instance.pk %}"><button>See details</button></a></p>
+               <a href = "{% url 'product-by-category' instance.category.pk %}"><button style="background-color: deepskyblue">Same category</button></a>
+  	          <a href="{% url 'product-detail' instance.pk %}"><button>See details</button></a>
           </div>
      </div>     
      {% empty %}
-            <div>
+            <div class="welcome">
                 <h3> There are no product listings yet. </h3>
             </div>
      {% endfor %}     
@@ -207,7 +248,7 @@ select {
 <script>
   var tit = document.querySelectorAll("h2");
   var i;
-  const limit = 20;
+  const limit = 15;
   for (i = 0; i < tit.length; i++) {
     if(tit[i].innerText.length > limit) {
       tit[i].innerText = tit[i].innerText.substr(0, limit) + "...";
