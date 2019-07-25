@@ -97,7 +97,5 @@ wrapt==1.11.1
 zipp==0.5.1
 Twisted==19.2.1
 txaio==18.8.1
-typed-ast==1.1.0
-urllib3==1.24.2
 wrapt==1.10.11
 zope.interface==4.6.0
