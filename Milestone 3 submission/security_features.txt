@@ -1,0 +1,41 @@
+For Milestone 3:
+
+1. Cannot update/delete posts of other users (buttons will not appear
+and re-direct if going to the link)
+
+https://docs.djangoproject.com/en/2.2/topics/security/
+
+2. Cross site scripting (XSS) protection¶
+    Hello, {{name }}
+    chỉnh name là <script> alert ('hello') </script>
+        boom! nó sẽ hiện alert hello
+        similarly can put similar scripts
+
+3. Clickjacking Protection
+    https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=2ahUKEwih9-yEpNDjAhVXFogKHc0ZBLAQFjAAegQIAhAB&url=https%3A%2F%2Fdocs.djangoproject.com%2Fen%2F2.2%2Fref%2Fclickjacking%2F&usg=AOvVaw35dpPiHmvHJeKbxn6DhiIg
+
+4. security.W016
+
+5. (security.W008)
+    SECURE_SSL_REDIRECT
+    Default: False
+    If True, the SecurityMiddleware redirects all non-HTTPS requests to HTTPS
+    tl,dr: HTTPs only
+
+
+$ python manage.py check --deploy
+System check identified some issues:
+
+WARNINGS:
+not yet attempted, may be hard to reverse-fix: (security.W004) You have not set a value for the SECURE_HSTS_SECONDS setting. If your entire site is served only over SSL, you may want to consider setting a value and enabling HTTP Strict Transport Security. Be sure to read the documentation first; enabling HSTS carelessly can cause serious, irreversible problems.
+solved: (security.W006) Your SECURE_CONTENT_TYPE_NOSNIFF setting is not set to True, so your pages will not be served with an 'X-Content-Type-Options: nosniff' header. You should consider enabling this header to prevent the browser from identifying content types incorrectly.
+soled: (security.W007) Your SECURE_BROWSER_XSS_FILTER setting is not set to True, so your pages will not be served with an 'X-XSS-Protection: 1; mode=block' header. You should consider enabling this header to activate the browser's XSS filtering and help prevent XSS attacks.
+solve on production: (security.W008) Your SECURE_SSL_REDIRECT setting is not set to True. Unless your site should be available over both SSL and non-SSL connections, you may want to either set this setting True or configure a load balancer or reverse-proxy server to redirect all connections to HTTPS.
+solved: (security.W012) SESSION_COOKIE_SECURE is not set to True. Using a secure-only session cookie makes it
+more difficult for network traffic sniffers to hijack user sessions.
+solved (security.W016) You have 'django.middleware.csrf.CsrfViewMiddleware' in your MIDDLEWARE, but you have
+not set CSRF_COOKIE_SECURE to True. Using a secure-only CSRF cookie makes it more difficult for network traffic sniffers to steal the CSRF token.
+solve on production: (security.W018) You should not have DEBUG set to True in deployment.
+solved: (security.W019) You have 'django.middleware.clickjacking.XFrameOptionsMiddleware' in your MIDDLEWARE,
+but X_FRAME_OPTIONS is not set to 'DENY'. The default is 'SAMEORIGIN', but unless there is a good reason
+for your site to serve other parts of itself in a frame, you should change it to 'DENY'. https://docs.djangoproject.com/en/2.2/ref/clickjacking/
