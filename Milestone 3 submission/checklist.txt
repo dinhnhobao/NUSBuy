@@ -4,3 +4,7 @@ SDLC
 Design principles
 Security features:
     security_features.txt
+
+Social integration: 
+
+Payment gateway

@@ -223,3 +223,6 @@ X_FRAME_OPTIONS = 'DENY' #Clickjacking Protection, (security.W019)
 CSRF_COOKIE_SECURE = True #(security.W016) 
 SESSION_COOKIE_SECURE = True #(security.W012)
 SECURE_CONTENT_TYPE_NOSNIFF = True #(security.W006)
+
+# 3 more unsolved security issues: 
+# one left unfixed (hard to fix), 2 to be fixed on production
