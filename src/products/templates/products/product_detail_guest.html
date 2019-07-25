@@ -14,7 +14,8 @@ img {
 .item6 { grid-area: price; }
 .item7 { grid-area: multy; }
 .item8 { grid-area: deliver; }
-.item9 { grid-area: author; }
+.item9 { grid-area: con; }
+.item10 { grid-area: descript; }
 .grid-container {
   display: grid;
   grid-template-areas:
@@ -26,29 +27,51 @@ img {
     'image image image'
     'image image image';
   grid-gap: 0px;
-  background-color: powderblue;
+  background-color: whitesmoke;
   padding: 0px;
-  width: 110%
+  width: 100%;
 }
 
 .grid-box {
   display: grid;
   grid-template-areas:
-    'date date date date date date date date date'
-    'count count count count count count count count count'
-    'category category category category category category category category category'
-    'price price price price price price price price price'
-    'multy multy multy multy multy multy multy multy multy'
-    'deliver deliver deliver deliver deliver deliver deliver deliver deliver'
-    'author author author author author author author author author';
+    'date'
+    'count'
+    'category'
+    'price'
+    'multy'
+    'deliver'
+    'con';
   grid-gap: 0px;
-  background-color: powderblue;
-  padding-right: 100px;
-  width: 50%;
+  background-color: whitesmoke;
+  padding-right: 0px;
+  border: 1px solid Silver;
+  width: 30.3%;
+}
+
+.description {
+  width: 38%;
+  height: 300px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color:azure;
+  border: 1px solid Silver;
+  margin: 10px;
+}
+
+.seller {
+  width: 28.7%;
+  height: 300px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid Silver;
+  background-color:azure;
+  margin-left: 40.4%;
+  margin-top: -333px;
 }
 
 .grid-container > div {
-  background-color: powderblue;
+  background-color: whitesmoke;
   text-align: left;
   padding: 15px 15px 0px 15px;
   margin-right: 300px;
@@ -59,10 +82,10 @@ img {
 
 .grid-box > div {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  background-color: powderblue;
+  background-color: azure;
   text-align: left;
   padding: 15px 15px 42.5px 15px;
-  margin-right: 300px;
+  margin-right: 0px;
   font-size: 15px;
   font-family: sans-serif;
   color: black;
@@ -87,12 +110,14 @@ h1 {
     font-size: 50px;
 }
 .form {
-  width: 30%;
-  background-color: powderblue;
+  width: 50%;
+  background-color: azure;
+  border: 1px solid Silver;
+  padding: 5px 5px;
   color: black;
 }
 .form > div {
-  background-color: powderblue;
+  background-color: whitesmoke;
   text-align: left;
   padding: 60px;
   font-size: 10px;
@@ -101,12 +126,12 @@ h1 {
 }
 .comments-list {
   width: 100%;
-  background-color: powderblue;
+  background-color: whitesmoke;
   margin: 0px;
   padding: 0px;
 }
 .comments-list > div {
-  background-color: powderblue;
+  background-color: whitesmoke;
   text-align: left;
   padding: 0px;
   font-size: 10px;
@@ -114,9 +139,9 @@ h1 {
   color: black;
 }
 .info {
-  background-color: powderblue;
+  background-color: azure;
   color: black;
-  border: 1px solid black;
+  border: 1px solid Silver;
   padding-left: 10px;
   width: 33.3%
 }
@@ -128,7 +153,7 @@ h1 {
   float: left;
   width: 40%;
   padding: 2px;
-  background-color: powderblue;
+  background-color: whitesmoke;
 }
 
 .control {
@@ -148,22 +173,8 @@ h1 {
   margin: 4px 2px;
   cursor: pointer;
 }
-        nav {
-            font-size: 14px;
-            font-family: sans-serif;
-            text-align: center;
-            width: 150%;
-        }
 
-        .menu {
-            width: 119px;
-            border: solid 1px; 
-            float: left;
-            padding: 10px 0;
-            background-color: black;
-            color: white;
-        }
-        button {
+button {
             background-color: grey;
             border: none;
             color: white;
@@ -190,6 +201,64 @@ h1 {
   .fb-share-button {
     margin: 10px;
   }
+
+  .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
 </style>
 
 <div class="columns">
@@ -197,11 +266,16 @@ h1 {
     <div class="item1"><h2>{{ object.title }}</h2></div>
     <div class="item2">
       <div>
-        <button onclick="function_2()">Prev</button>
-        <button onclick="function_1()">Next</button>
+        <button style="color: black; font-size:24px; border: none; background-color: whitesmoke;" onclick="function_2()"><i class="fa fa-arrow-left"></i></button>
+        <button style="color: black; font-size:24px; border: none; background-color: whitesmoke;" onclick="function_1()"><i class="fa fa-arrow-right"></i></button>
       </div>
-      <img class ="change" src="{{ object.image_link_1 }}">
+      <img class ="change" id= "myImg" src="{{ object.image_link_1 }}">
+      <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+      </div>
     </div>
+    {% comment %} <div class="item10">Description: {{ object.description }}</div> {% endcomment %}
   </div>
 </div>
 
@@ -212,10 +286,10 @@ h1 {
     <div class="item6"><i class="fa fa-usd" aria-hidden="true"></i> Price: ${{ object.price_in_SGD }}</div>
     <div class="item7"><i class="fa fa-files-o" aria-hidden="true"></i> Multiple quantities: {{ object.this_product_has_multiple_quantities }}</div>
     <div class="item8"><i class="fa fa-map-marker" aria-hidden="true"></i> Delivery location: {{ object.delivery_location }}</div>
-    <div class="item9">
-      <i class="fa fa-user" aria-hidden="true"></i> Author: {{ object.author }}
-        {% for account in object.author.socialaccount_set.all %}
-          <h4> The author logged in via {{ account.provider }}. </h4>
+    <div class="item9"><i class="fa fa-check-circle" aria-hidden="true"></i> Condition: </div>
+      {% comment %} <i class="fa fa-user" aria-hidden="true"></i> con: {{ object.con }}
+        {% for account in object.con.socialaccount_set.all %}
+          <h4> The con logged in via {{ account.provider }}. </h4>
 
           {% if account.get_avatar_url %}
             <p><img width="50" height="50" src="{{ account.get_avatar_url }}" /></p>
@@ -261,16 +335,67 @@ h1 {
             <p> Number of Follows: {{ account.extra_data.counts.follows }}, Number of Followers:  {{ account.extra_data.counts.followed_by }} </p>
           {% endif %}
         {% endfor %}
-    </div>
+    </div> {% endcomment %}
 </div>
 
+<div class="description"><p><i class="fa fa-info-circle"></i> Description: {{ object.description }}</p> <p><i class="fa fa-expand" aria-hidden="true"></i> Extra information: {{ object.extra_information }}</p></div>
+<div class="seller">
+  <h4>Meet The Seller</h4>
+        {% for account in object.author.socialaccount_set.all %}
+
+          {% if account.get_avatar_url %}
+            <h2><img width="23" height="23" src="{{ account.get_avatar_url }}" /> {{ object.author }}</h2>
+          {% endif %}
+
+          {% if account.extra_data.email %}
+            <p> E-mail: {{ account.extra_data.email }} </p>
+          {% endif %}
+
+          {% if account.extra_data.full_name %}
+            <p> Full name: {{ account.extra_data.full_name }} </p>
+          {% endif %}
+
+          {% if account.extra_data.username %}
+            <p> Full name: {{ account.extra_data.username }} </p>
+          {% endif %}
+
+          {% if account.extra_data.bio %}
+            <p> Bio: {{ account.extra_data.bio }} </p>
+          {% endif %}
+
+          {% if account.extra_data.name %}
+            <p> Name: {{ account.extra_data.name }} </p>
+          {% endif %}
+
+          {% if account.extra_data.company %}
+            <p> Company: {{ account.extra_data.company }} </p>
+          {% endif %}
+
+          {% if account.extra_data.blog %}
+            <p> Blog: {{ account.extra_data.blog }} </p>
+          {% endif %}
+
+          {% if account.extra_data.location %}
+            <p> Location: {{ account.extra_data.location }}{{ account.extra_data.location.name }} </p>
+          {% endif %}
+
+          {% if account.extra_data.given_name %}
+            <p> name: {{ account.extra_data.name }}, or {{ account.extra_data.given_name }} {{ account.extra_data.family_name }} </p>
+          {% endif %}
+
+          {% if account.extra_data.counts.follows %}
+            <p> Number of Follows: {{ account.extra_data.counts.follows }}, Number of Followers:  {{ account.extra_data.counts.followed_by }} </p>
+          {% endif %}
+          <h4> The author logged in via {{ account.provider }}. </h4>
+        {% endfor %}
+</div>
 
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
 
-<div class="fb-share-button" data-href="{% url 'product-detail' object.pk %}" data-layout="button" data-size="small"></div>
+<div class="fb-share-button" data-href="{% url 'product-detail' object.pk %}" data-layout="button" data-size="large"></div>
 
-<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <div class ="control">
@@ -304,7 +429,7 @@ function thisFunction() {
         {% for each_comment in comments %}
         <div class="comment">
             <div class="info">
-                <p style="font-size: 15px; color: red;">{{ each_comment.author }}<span>   <span>at {{ each_comment.created_on }}</span></p>
+                <p style="font-size: 15px; color: red;">{{ each_comment.con }}<span>   <span>at {{ each_comment.created_on }}</span></p>
                 <p style="font-size: 15px;">{{ each_comment.comment }}</p>
             </div>   
         </div>
@@ -363,28 +488,52 @@ width="600" height="450" frameborder="0" style="border:0" allowfullscreen></ifra
   var link_2 = "{{ object.image_link_2 }}";
   var link_3 = "{{ object.image_link_3 }}";
   var link_4 = "{{ object.image_link_4 }}";
-  var u = document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src;
+  var curr_img = document.getElementById("myImg");
   function function_1() {
-    if(document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src == link_1 && link_2 != "") {
-      document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src = link_2;
+    if(curr_img.src == link_1 && link_2 != "") {
+      curr_img.src = link_2;
     }
-    else if(document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src == link_2 && link_3 != "") {
-      document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src = link_3;
+    else if(curr_img.src == link_2 && link_3 != "") {
+      curr_img.src = link_3;
     }
-    else if(document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src == link_3 && link_4 != "") {
-      document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src = link_4;
+    else if(curr_img.src == link_3 && link_4 != "") {
+      curr_img.src = link_4;
     }
   }
   function function_2() {
-    if(document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src == link_2) {
-      document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src = link_1;
+    if(curr_img.src == link_2) {
+      curr_img.src = link_1;
     }
-    if(document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src == link_3 && link_2 != "") {
-      document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src = link_2;
+    if(curr_img.src == link_3 && link_2 != "") {
+      curr_img.src = link_2;
     }
-    if(document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src == link_4 && link_3 != "") {
-      document.getElementsByClassName("columns")[0].getElementsByClassName("grid-container")[0].getElementsByClassName("item2")[0].getElementsByClassName("change")[0].src = link_3;
+    if(curr_img.src == link_4 && link_3 != "") {
+      curr_img.src = link_3;
     }
+  }
+</script>
+
+<script>
+  var modal = document.getElementById("myModal");
+  var img = document.getElementById("myImg");
+  var modalImg = document.getElementById("img01");
+  img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+  }
+  var span = document.getElementsByClassName("close")[0];
+  span.onclick = function() { 
+    modal.style.display = "none";
+  }
+</script>
+
+<script>
+  var con = "{{ object.condition }}";
+  if(con == 'N') {
+    document.getElementsByClassName("grid-box")[0].getElementsByClassName("item9")[0].innerHTML += "New";
+  }
+  else {
+    document.getElementsByClassName("grid-box")[0].getElementsByClassName("item9")[0].innerHTML += "Used";
   }
 </script>
 

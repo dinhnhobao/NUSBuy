@@ -14,7 +14,8 @@ img {
 .item6 { grid-area: price; }
 .item7 { grid-area: multy; }
 .item8 { grid-area: deliver; }
-.item9 { grid-area: author; }
+.item9 { grid-area: con; }
+.item10 { grid-area: descript; }
 .grid-container {
   display: grid;
   grid-template-areas:
@@ -26,29 +27,51 @@ img {
     'image image image'
     'image image image';
   grid-gap: 0px;
-  background-color: powderblue;
+  background-color: whitesmoke;
   padding: 0px;
-  width: 110%
+  width: 100%;
 }
 
 .grid-box {
   display: grid;
   grid-template-areas:
-    'date date date date date date date date date'
-    'count count count count count count count count count'
-    'category category category category category category category category category'
-    'price price price price price price price price price'
-    'multy multy multy multy multy multy multy multy multy'
-    'deliver deliver deliver deliver deliver deliver deliver deliver deliver'
-    'author author author author author author author author author';
+    'date'
+    'count'
+    'category'
+    'price'
+    'multy'
+    'deliver'
+    'con';
   grid-gap: 0px;
-  background-color: powderblue;
-  padding-right: 100px;
-  width: 50%;
+  background-color: whitesmoke;
+  padding-right: 0px;
+  border: 1px solid Silver;
+  width: 30.3%;
+}
+
+.description {
+  width: 38%;
+  height: 300px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color:azure;
+  border: 1px solid Silver;
+  margin: 10px;
+}
+
+.seller {
+  width: 28.7%;
+  height: 300px;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid Silver;
+  background-color:azure;
+  margin-left: 40.4%;
+  margin-top: -333px;
 }
 
 .grid-container > div {
-  background-color: powderblue;
+  background-color: whitesmoke;
   text-align: left;
   padding: 15px 15px 0px 15px;
   margin-right: 300px;
@@ -62,7 +85,7 @@ img {
   background-color: azure;
   text-align: left;
   padding: 15px 15px 42.5px 15px;
-  margin-right: 300px;
+  margin-right: 0px;
   font-size: 15px;
   font-family: sans-serif;
   color: black;
@@ -89,11 +112,12 @@ h1 {
 .form {
   width: 50%;
   background-color: azure;
+  border: 1px solid Silver;
   padding: 5px 5px;
   color: black;
 }
 .form > div {
-  background-color: powderblue;
+  background-color: whitesmoke;
   text-align: left;
   padding: 60px;
   font-size: 10px;
@@ -102,12 +126,12 @@ h1 {
 }
 .comments-list {
   width: 100%;
-  background-color: powderblue;
-  margin: 0px;
+  background-color: whitesmoke;
+  margin-top: -15px;
   padding: 0px;
 }
 .comments-list > div {
-  background-color: powderblue;
+  background-color: whitesmoke;
   text-align: left;
   padding: 0px;
   font-size: 10px;
@@ -117,7 +141,7 @@ h1 {
 .info {
   background-color: azure;
   color: black;
-  border: 1px solid black;
+  border: 1px solid Silver;
   padding-left: 10px;
   width: 33.3%
 }
@@ -129,7 +153,7 @@ h1 {
   float: left;
   width: 40%;
   padding: 2px;
-  background-color: powderblue;
+  background-color: whitesmoke;
 }
 
 .control {
@@ -149,22 +173,8 @@ h1 {
   margin: 4px 2px;
   cursor: pointer;
 }
-        nav {
-            font-size: 14px;
-            font-family: sans-serif;
-            text-align: center;
-            width: 150%;
-        }
 
-        .menu {
-            width: 119px;
-            border: solid 1px; 
-            float: left;
-            padding: 10px 0;
-            background-color: black;
-            color: white;
-        }
-        button {
+button {
             background-color: grey;
             border: none;
             color: white;
@@ -256,8 +266,8 @@ h1 {
     <div class="item1"><h2>{{ object.title }}</h2></div>
     <div class="item2">
       <div>
-        <button style="color: black; font-size:24px; border: none; background-color: powderblue;" onclick="function_2()"><i class="fa fa-arrow-left"></i></button>
-        <button style="color: black; font-size:24px; border: none; background-color: powderblue;" onclick="function_1()"><i class="fa fa-arrow-right"></i></button>
+        <button style="color: black; font-size:24px; border: none; background-color: whitesmoke;" onclick="function_2()"><i class="fa fa-arrow-left"></i></button>
+        <button style="color: black; font-size:24px; border: none; background-color: whitesmoke;" onclick="function_1()"><i class="fa fa-arrow-right"></i></button>
       </div>
       <img class ="change" id= "myImg" src="{{ object.image_link_1 }}">
       <div id="myModal" class="modal">
@@ -265,6 +275,7 @@ h1 {
         <img class="modal-content" id="img01">
       </div>
     </div>
+    {% comment %} <div class="item10">Description: {{ object.description }}</div> {% endcomment %}
   </div>
 </div>
 
@@ -275,10 +286,10 @@ h1 {
     <div class="item6"><i class="fa fa-usd" aria-hidden="true"></i> Price: ${{ object.price_in_SGD }}</div>
     <div class="item7"><i class="fa fa-files-o" aria-hidden="true"></i> Multiple quantities: {{ object.this_product_has_multiple_quantities }}</div>
     <div class="item8"><i class="fa fa-map-marker" aria-hidden="true"></i> Delivery location: {{ object.delivery_location }}</div>
-    <div class="item9">
-      <i class="fa fa-user" aria-hidden="true"></i> Author: {{ object.author }}
-        {% for account in object.author.socialaccount_set.all %}
-          <h4> The author logged in via {{ account.provider }}. </h4>
+    <div class="item9"><i class="fa fa-check-circle" aria-hidden="true"></i> Condition: </div>
+      {% comment %} <i class="fa fa-user" aria-hidden="true"></i> con: {{ object.con }}
+        {% for account in object.con.socialaccount_set.all %}
+          <h4> The con logged in via {{ account.provider }}. </h4>
 
           {% if account.get_avatar_url %}
             <p><img width="50" height="50" src="{{ account.get_avatar_url }}" /></p>
@@ -324,16 +335,67 @@ h1 {
             <p> Number of Follows: {{ account.extra_data.counts.follows }}, Number of Followers:  {{ account.extra_data.counts.followed_by }} </p>
           {% endif %}
         {% endfor %}
-    </div>
+    </div> {% endcomment %}
 </div>
 
+<div class="description"><p><i class="fa fa-info-circle"></i> Description: {{ object.description }}</p> <p><i class="fa fa-expand" aria-hidden="true"></i> Extra information: {{ object.extra_information }}</p></div>
+<div class="seller">
+  <h4>Meet The Seller</h4>
+        {% for account in object.author.socialaccount_set.all %}
+
+          {% if account.get_avatar_url %}
+            <h2><img width="23" height="23" src="{{ account.get_avatar_url }}" /> {{ object.author }}</h2>
+          {% endif %}
+
+          {% if account.extra_data.email %}
+            <p> E-mail: {{ account.extra_data.email }} </p>
+          {% endif %}
+
+          {% if account.extra_data.full_name %}
+            <p> Full name: {{ account.extra_data.full_name }} </p>
+          {% endif %}
+
+          {% if account.extra_data.username %}
+            <p> Full name: {{ account.extra_data.username }} </p>
+          {% endif %}
+
+          {% if account.extra_data.bio %}
+            <p> Bio: {{ account.extra_data.bio }} </p>
+          {% endif %}
+
+          {% if account.extra_data.name %}
+            <p> Name: {{ account.extra_data.name }} </p>
+          {% endif %}
+
+          {% if account.extra_data.company %}
+            <p> Company: {{ account.extra_data.company }} </p>
+          {% endif %}
+
+          {% if account.extra_data.blog %}
+            <p> Blog: {{ account.extra_data.blog }} </p>
+          {% endif %}
+
+          {% if account.extra_data.location %}
+            <p> Location: {{ account.extra_data.location }}{{ account.extra_data.location.name }} </p>
+          {% endif %}
+
+          {% if account.extra_data.given_name %}
+            <p> name: {{ account.extra_data.name }}, or {{ account.extra_data.given_name }} {{ account.extra_data.family_name }} </p>
+          {% endif %}
+
+          {% if account.extra_data.counts.follows %}
+            <p> Number of Follows: {{ account.extra_data.counts.follows }}, Number of Followers:  {{ account.extra_data.counts.followed_by }} </p>
+          {% endif %}
+          <h4> The author logged in via {{ account.provider }}. </h4>
+        {% endfor %}
+</div>
 
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
 
-<div class="fb-share-button" data-href="{% url 'product-detail' object.pk %}" data-layout="button" data-size="small"></div>
+<div class="fb-share-button" data-href="{% url 'product-detail' object.pk %}" data-layout="button" data-size="large"></div>
 
-<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-size="large">Tweet</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <div class ="control">
@@ -367,7 +429,7 @@ function thisFunction() {
         {% for each_comment in comments %}
         <div class="comment">
             <div class="info">
-                <p style="font-size: 15px; color: red;">{{ each_comment.author }}<span>   <span>at {{ each_comment.created_on }}</span></p>
+                <p style="font-size: 15px; color: red;">{{ each_comment.con }}<span>   <span>at {{ each_comment.created_on }}</span></p>
                 <p style="font-size: 15px;">{{ each_comment.comment }}</p>
             </div>   
         </div>
@@ -465,5 +527,14 @@ width="600" height="450" frameborder="0" style="border:0" allowfullscreen></ifra
   }
 </script>
 
+<script>
+  var con = "{{ object.condition }}";
+  if(con == 'N') {
+    document.getElementsByClassName("grid-box")[0].getElementsByClassName("item9")[0].innerHTML += "New";
+  }
+  else {
+    document.getElementsByClassName("grid-box")[0].getElementsByClassName("item9")[0].innerHTML += "Used";
+  }
+</script>
 
 {% endblock %}

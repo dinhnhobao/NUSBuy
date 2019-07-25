@@ -10,15 +10,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <style>
+        body {
+            background-color: whitesmoke;
+            font-family: 'Lato', sans-serif;
+        }
+        .back {
+            width: 500px;
+            border: 1px solid black;
+        }
         nav {
             font-size: 14px;
             font-family: sans-serif;
             text-align: center;
             width: 150%;
+            height: 50px;
+            margin-top: -40px;
+            margin-left: 100px;
         }
 
         .menu {
-            width: 119px;
+            width: 233px;
             border: solid 1px; 
             float: left;
             padding: 10px 0;
@@ -26,7 +37,7 @@
             color: white;
         }
         button {
-            background-color: grey;
+            background-color: black;
             border: none;
             color: white;
             padding: 8px 20px;
@@ -52,19 +63,30 @@
     </style>
 
     <body>
+
         <img style="width: 100px; height: 100px;" src="/static/logo.png" alt="NUSBuy logo"/>
 
-            <nav>
-                <a href="{% url 'home' %}"><div class="menu">See all listings</div></a>
-                <a href="{% url 'report' %}""><div class="menu">Report a bug</div></a>
-            </nav>
-
-        
-            {% if user.is_authenticated %}
-                <p><a href="{% url 'logout' %}"><button class= "auth">&#128274 Logout</button></a></p>
-            {% else %}
-                <p><a href="{% url 'authentication' %}"><button class = "auth">&#128275 Login</button></a></p>
+        <nav>
+            <a href="{% url 'home' %}"><div class="menu">See all listings</div></a>
+            <a href="{% url 'report' %}""><div class="menu">Report a bug</div></a>
+            {% if user %}
+                {% for account in user.socialaccount_set.all %}
+                    {% if account.get_avatar_url %}
+                        <div class="menu"><img width="13" height="13" src="{{ account.get_avatar_url }}" />   {{ user.username }} {{ user.name }}</div>
+                    {% else %}
+                        <div class="menu">No username</div>
+                    {% endif %}
+                    
+                {% endfor %}
             {% endif %}
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}"><div class= "menu"><i class="fa fa-unlock"></i> Logout</div></a>
+            {% else %}
+                <a href="{% url 'authentication' %}"><div class = "menu"><i class="fa fa-lock"></i> Login</div></a>
+            {% endif %}
+        </nav>
+        
+
         
         {% block content %}
             replace me
