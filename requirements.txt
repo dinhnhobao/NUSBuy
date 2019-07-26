@@ -18,12 +18,12 @@ configparser==3.7.4
 constantly==15.1.0
 daphne==2.2.2
 defusedxml==0.5.0
-Django==2.2.3
+Django==2.1.2
 django-allauth==0.38.0
 django-cors-headers==2.4.0
 django-rest-auth==0.9.3
 django-rest-framework==0.1.0
-djangorestframework==3.9.1
+djangorestframework==3.9.4
 hiredis==0.2.0
 hyperlink==18.0.0
 idna==2.7
@@ -98,3 +98,8 @@ zipp==0.5.1
 Twisted==19.2.1
 txaio==18.8.1
 zope.interface==4.6.0
+Jinja2-2.10.1 
+Werkzeug-0.15.5 
+click-7.0 
+flask-1.1.1 
+itsdangerous-1.1.0

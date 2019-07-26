@@ -152,52 +152,54 @@ select {
      <h5></h5>
 
 <select name="Sort" onchange="location = this.value;">
-    <option>--------------Sort---------------</option>
+    <option
+    value="">-----------------Sorting------------------
+    </option>
      <option
-     value="{{params}}?title=True{{params}}"
+     value="?title=True"
      >Sort by name
      </option>
 
      <option
-     value="?pub_date=True{{params}}"
+     value="?pub_date=True"
      >Sort by publish date
      </option>
 
      <option
-     value="?view_count=True{{params}}"
+     value="?view_count=True"
      >Sort by view count
      </option>
 
      <option
-     value="?price_increasing=True{{params}}"
+     value="?price_increasing=True"
      >Sort by price: low to high
      </option>
 
      <option
-     value="?price_descending=True{{params}}"
+     value="?price_descending=True"
      >Sort by price: high to low
      </option>
-</select>
-
-<select name="see" onchange="location = this.value;">  
-    <option>----------------See items-----------------</option>
+ 
+    <option
+    value="">------------------Filters-------------------
+    </option>
      <option
-     value="?condition_used=True{{params}}"
+     value="?condition_used=True"
      >Only see items already used
      </option>
 
      <option
-     value="?condition_new=True{{params}}"
+     value="?condition_new=True"
      >Only see new items
      </option>
 
      <option
-     value="?multiple=True{{params}}"
+     value="?multiple=True"
      >See items with multiple quantities
      </option>
 
      <option
-     value="?unique=True{{params}}"
+     value="?unique=True"
      >See items with one quantity only
      </option>
 </select>

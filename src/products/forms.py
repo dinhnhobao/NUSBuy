@@ -4,7 +4,9 @@ from .models import Product, Comment
 class TitleField(forms.CharField):
     # title name will always be (UPPERCASE first letter) + (lowercase the rest)
     def to_python(self, value):
-        name = value[0].upper() + value.lower()[1:]
+        name = ''
+        if value:
+            name = value[0].upper() + value.lower()[1:]
         return name
 
 class ProductForm(forms.ModelForm):

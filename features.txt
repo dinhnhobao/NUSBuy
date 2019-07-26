@@ -89,6 +89,8 @@ https://ant.design/components/form/
 Deadline Milestone3: 29 July (next Tuesday)
 1. Fix filter/sorting (Duc, hard)
 2. Fix Chat Authentication, url problems (THURSDAY, 25 JULY MORNING + NIGHT)
-3. Improve UI (Duc)
 4. testing (mechanical stuffs, FRIDAY)
+https://stackoverflow.com/questions/54026013/channel-tests-with-selenium-in-django-raise-error-message
+https://stackoverflow.com/questions/50016048/django-channels-2-with-selenium-test-failed
+unsolved testing problem
 5. deploy for production (Monday+)

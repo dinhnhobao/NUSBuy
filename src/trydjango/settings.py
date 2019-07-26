@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@hh&)hed7(d*lqzlipkt)6)hdahnc$vz8*q&gulc%mp^xt5q=3='
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with dTebug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_auth.registration',
     'rest_framework',
+    'rest_framework.utils',
     'rest_framework.authtoken',
 
     # own
@@ -226,3 +227,5 @@ SECURE_CONTENT_TYPE_NOSNIFF = True #(security.W006)
 
 # 3 more unsolved security issues: 
 # one left unfixed (hard to fix), 2 to be fixed on production
+
+SESSION_ENGIN = 'django.contrib.sessions.backends.cached_db'

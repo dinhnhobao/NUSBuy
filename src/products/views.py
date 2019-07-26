@@ -67,13 +67,10 @@ def products_list(request):
     Renders the products/product_list.html template which lists all the
     currently available polls
     """
+    if not request.GET._mutable:
+        request.GET._mutable = True
     products = Product.objects.get_queryset().order_by('id')
-
-    #search bar
-    search_term = request.GET.get('search_term')
-    if search_term:
-        products = products.filter(title__icontains=search_term)
-
+        
     #sorting
     if 'title' in request.GET:
         products = products.order_by('title')
@@ -81,31 +78,32 @@ def products_list(request):
     elif 'pub_date' in request.GET:
         products = products.order_by('-pub_date')
 
-    if 'view_count' in request.GET:
+    elif 'view_count' in request.GET:
         products = products.order_by('-view_count')
 
-    if 'price_increasing' in request.GET:
+    elif 'price_increasing' in request.GET:
         products = products.order_by('price_in_SGD')
 
-    if 'price_descending' in request.GET:
+    elif 'price_descending' in request.GET:
         products = products.order_by('-price_in_SGD')
-    
-    #
 
-    #filter
-    if 'condition_used' in request.GET:
+    elif 'condition_used' in request.GET:
         products = products.filter(condition__exact = 'USED') #used items
 
-    if 'condition_new' in request.GET:
+    elif 'condition_new' in request.GET:
         products = products.filter(condition__exact = 'N') #new items 
 
-    if 'multiple' in request.GET:
+    elif 'multiple' in request.GET:
         products = products.filter(this_product_has_multiple_quantities__exact = True) 
 
-    if 'unique' in request.GET:
+    elif 'unique' in request.GET:
         products = products.filter(this_product_has_multiple_quantities__exact = False)
     ###
-
+    #search bar
+    search_term = request.GET.get('search_term')
+    if search_term:
+        products = products.filter(title__icontains=search_term)
+        
     #pagination:
     LISTINGS_PER_PAGE = 8
     paginator = Paginator(products, LISTINGS_PER_PAGE)
@@ -123,12 +121,6 @@ def products_list(request):
                'number_of_total_items': number_of_total_items,
                'number_of_filtered_items': len(products)}
     ###
-
-    #user's data
-    print('---------------')
-    print(request.GET)
-    print('---------------')
-
     return render(request, 'products/product_list.html', context)
     
 
