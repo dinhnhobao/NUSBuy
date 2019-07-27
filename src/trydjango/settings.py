@@ -69,6 +69,9 @@ INSTALLED_APPS = [
     'nusopenid',
 ]
 
+chat_application_url = 'http://localhost:1234/'
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -222,8 +225,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 ###SECURITY FEATURES FOR DJANGO###
 SECURE_BROWSER_XSS_FILTER = True #Cross site scripting (XSS) protection, (security.W007)
 X_FRAME_OPTIONS = 'DENY' #Clickjacking Protection, (security.W019)
-CSRF_COOKIE_SECURE = True #(security.W016) 
-SESSION_COOKIE_SECURE = True #(security.W012)
+#CSRF_COOKIE_SECURE = False #(security.W016) 
+#SESSION_COOKIE_SECURE = True #only use this to run on SSL(security.W012)
 SECURE_CONTENT_TYPE_NOSNIFF = True #(security.W006)
 
 # 3 more unsolved security issues: 

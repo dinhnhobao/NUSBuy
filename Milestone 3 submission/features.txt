@@ -1,0 +1,107 @@
+----------------------------------------------------------------------------
+**but logic not yet implemented: cannot update/delete posts of another user.
+**authentication completion
+----------------------------------------------------------------------------
+Feedback from Milestone 1:
+
+i) Conversations between buyers and sellers. How to store this?***
+ii) why website/mobile app?
+iii) Scalability
+iv) Data security
+iv) Payment gateway: Singtel Dash or DBSPaylah.
+For Payment Gateway, would this introduce a new e-money wallet? 
+Would it be more troublesome for users to manage them? 
+--->Would it be easier if users paid 
+each other on the spot using existing apps like Paylah or PayNow? <---
+
+v)
+make video quality better as it is quite blurry. 
+
+vi) OpenID** ** **
+vii)Maps
+
+You guys will have to make it more appealing, more features 
+and give reasons why NUS students will prefer your app over Carousel.
+
+
+1) Share a product listing on social media platforms
+2) Ratings feature 
+---------------------------------------------
+authentication has to be re-setup on production
+bugs:
+    requiring https when I only have http (Facebook Login API)
+    user, avatar, email
+-----------------------------------------------
+Must obtain new google authentication key on production
+authorisation callback URLs is different for each website, 
+some website has strict restrictions (e.g. facebook https only, localhost cannot, etc.)
+https://axiacore.com/blog/how-retrieve-facebook-extra-info-from-django-534/
+***The redirect_url specifies where we redirect users after 
+they have chosen whether or not to authenticate your application.
+Feedback from Milestone 2:
+
+(assigned) UI
+(bug +)
+hard-coding Google Maps
+
+(bug +)
+views can be manipulated unless you have a way to prevent that (needs clarification)
+whilst price could compliment the search function so you can sort by prices for a particular product 
+(since price alone would be useless if there are different products).
+
+(testing) "You can find friends to test out your apps and compare with Carousell.
+It can help you to figure out what's missing or what's not needed in your application.
+Some things users can feedback on is whether the entire use process 
+is streamlined, convenient, and pain points. PRODUCT DATABASE TEST: stress test the system + reveal any bugs
+
+(bug +)
+Facebook Authentication doesn't work on localhost, but should work on production. We will implement it on production (for Facebook only), the other platforms we will show only on the video.
+(feature +)Payment feature is FAIRLY necessary. 
+(feature) OpenID is not possible
+"The feature is adequately specified for the final phase, 
+and the features mentioned would be good implementation for NUSBuy. 
+Rating features , profile page and social media integration 
+help to check credibility, and the implementation of QR code payment 
+would make it easy for users to purchase the items from the seller.
+"
+(feature +) what attributes do we take from API apart from name
+
+
+
+--------------
+Must obtain new google authentication key on production
+authorisation callback URLs is different for each website: the URL of your application appended with the path different for each website
+some website has strict restrictions (e.g. facebook https only, localhost cannot, etc.)
+https://github.com/pennersr/django-allauth/blob/master/docs/providers.rst
+
+
+https://bootsnipp.com/snippets/exR5v chat.html
+
+json serialising of the username
+reverse order of messages
+functionalities
+swtich channels
+
+React
+https://ant.design/components/form/
+------------------------------------------------------------------------------------------------------------
+
+Deadline Milestone3: 29 July (next Tuesday)
+1. Fix filter/sorting (Duc, hard)
+2. Fix Chat Authentication, url problems (THURSDAY, 25 JULY MORNING + NIGHT)
+4. testing (mechanical stuffs, FRIDAY)
+https://stackoverflow.com/questions/54026013/channel-tests-with-selenium-in-django-raise-error-message
+https://stackoverflow.com/questions/50016048/django-channels-2-with-selenium-test-failed
+unsolved testing problem
+5. deploy for production (Monday+)
+
+testing
+    httpRESPONSE
+    redirect (302)/request fulfilled (200)
+    choose the correct things to test (avoid obvious things, things dependant on Django)
+    +: logic quite simple
+    authentication restriction ---> use Client
+    scoping, set up
+
+    cung style nhung nhieu ten dc khong?
+    Selenium: bypass login authentication (khac voi Django Client, Java mostly)

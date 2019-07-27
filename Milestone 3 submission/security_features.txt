@@ -39,3 +39,6 @@ solve on production: (security.W018) You should not have DEBUG set to True in de
 solved: (security.W019) You have 'django.middleware.clickjacking.XFrameOptionsMiddleware' in your MIDDLEWARE,
 but X_FRAME_OPTIONS is not set to 'DENY'. The default is 'SAMEORIGIN', but unless there is a good reason
 for your site to serve other parts of itself in a frame, you should change it to 'DENY'. https://docs.djangoproject.com/en/2.2/ref/clickjacking/
+
+https://stackoverflow.com/questions/14520457/djando-admin-wont-log-in-no-errors
+SESSION_COOKIE_SECURE = False #only use this to run on SSL(security.W012)

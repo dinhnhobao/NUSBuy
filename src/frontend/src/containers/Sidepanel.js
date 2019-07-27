@@ -80,7 +80,6 @@ class Sidepanel extends React.Component {
               className="online"
               alt=""
             />
-            <p>Mike Ross</p>
             <i
               className="fa fa-chevron-down expand-button"
               aria-hidden="true"
