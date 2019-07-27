@@ -94,3 +94,14 @@ https://stackoverflow.com/questions/54026013/channel-tests-with-selenium-in-djan
 https://stackoverflow.com/questions/50016048/django-channels-2-with-selenium-test-failed
 unsolved testing problem
 5. deploy for production (Monday+)
+
+testing
+    httpRESPONSE
+    redirect (302)/request fulfilled (200)
+    choose the correct things to test (avoid obvious things, things dependant on Django)
+    +: logic quite simple
+    authentication restriction ---> use Client
+    scoping, set up
+
+    cung style nhung nhieu ten dc khong?
+    Selenium: bypass login authentication (khac voi Django Client, Java mostly)

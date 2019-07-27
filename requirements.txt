@@ -98,8 +98,8 @@ zipp==0.5.1
 Twisted==19.2.1
 txaio==18.8.1
 zope.interface==4.6.0
-Jinja2-2.10.1 
-Werkzeug-0.15.5 
-click-7.0 
-flask-1.1.1 
-itsdangerous-1.1.0
+Jinja2==2.10.1 
+Werkzeug==0.15.5 
+click==7.0 
+flask==1.1.1 
+itsdangerous==1.1.0

@@ -75,13 +75,13 @@ p {
 }
 
 .create button {
-    background-color: green;
+    background-color: black;
     border: none;
     color: white;
     padding: 8px 20px;
     text-align: center;
     text-decoration: none;
-    display: inline;
+    display: inline-block;
     font-size: 14px;
     margin: 4px 2px;
     cursor: pointer;   
@@ -109,6 +109,13 @@ select {
 }
 
 .welcome {
+  background-color: white;
+  padding: 10px;
+  width: 35%;
+  border: 1px solid Silver;  
+}
+
+.no-products-notification {
   background-color: white;
   padding: 10px;
   width: 35%;
@@ -144,7 +151,7 @@ select {
     </h3>
 {% endif %}
 
-<div class="sort">
+<div class="create">
      <a
      href='{% url 'product-create' %}'
      ><button style="font-family: Comic Sans MS, cursive, sans-serif; background-color: orange;">CREATE A LISTING</button>
@@ -242,8 +249,8 @@ select {
           </div>
      </div>     
      {% empty %}
-            <div class="welcome">
-                <h3> There are no product listings yet. </h3>
+            <div class="no-products-notification">
+                <h3>There are no product listings yet.</h3>
             </div>
      {% endfor %}     
 

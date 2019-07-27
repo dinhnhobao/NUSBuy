@@ -46,8 +46,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    #'allauth.socialaccount.providers.google',
-    #'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.amazon',
     'allauth.socialaccount.providers.discord',
@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'pages',
     'products',
     'login',
+    'nusopenid',
 ]
 
 MIDDLEWARE = [

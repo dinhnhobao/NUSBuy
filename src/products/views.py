@@ -25,8 +25,11 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .permissions import IsOwnerOrReadOnly
 from allauth.socialaccount.models import SocialAccount
+from django.views.decorators.csrf import csrf_exempt
+
 #@method_decorator(login_required, name = 'dispatch') #dispatch: find get/post method, restrict
 @login_required
+@csrf_exempt
 def product_create(request):
     form = ProductForm(request.POST or None, request.FILES or None)
     author = request.user
@@ -42,6 +45,7 @@ def product_create(request):
     return render(request, "products/product_create.html", context)
 
 @login_required
+@csrf_exempt
 def product_update(request, id = id):
     product = get_object_or_404(Product, id = id)
     if product.author != request.user:
