@@ -103,3 +103,4 @@ Werkzeug==0.15.5
 click==7.0 
 flask==1.1.1 
 itsdangerous==1.1.0
+django-selenium-login==1.1.0

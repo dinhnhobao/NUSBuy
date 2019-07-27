@@ -164,7 +164,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-LOGIN_URL = 'login'
+#LOGIN_URL = ''
 LOGIN_REDIRECT_URL = 'home' #if we enter 'home', it will redirect to log-in windows
 LOGOUT_REDIRECT_URL = 'home' #after logout will direct to 'home'
 
@@ -179,7 +179,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-LOGIN_REDIRECT_URL = '/'
+#LOGIN_REDIRECT_URL = '/'
 SOCIALACCOUNT_PROVIDERS = {
     'telegram': {
         'TOKEN': 'insert-token-received-from-botfather'

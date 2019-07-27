@@ -24,7 +24,7 @@ urlpatterns = [
     path('post/<int:id>/delete/', views.product_delete_view, name = 'product-delete'),
 
     #authentication:
-    url(r'^login/$', views.login_view, name = 'login'),
+    url(r'^local_login/$', views.login_view, name = 'login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name = 'logout'),
 
     #category:
