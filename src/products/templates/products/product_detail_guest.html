@@ -127,7 +127,7 @@ h1 {
 .comments-list {
   width: 100%;
   background-color: whitesmoke;
-  margin: 0px;
+  margin-top: -15px;
   padding: 0px;
 }
 .comments-list > div {
@@ -399,8 +399,6 @@ button {
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <div class ="control">
-  <a href = "{% url 'product-update' object.pk %}"><button>Update</button></a>
-  <a href = "{% url 'product-delete' object.pk %}"><button>Delete</button></a>
   <a href = "{% url 'home' %}"><button>Back to home</button></a>
   <input type="text" value="{% url 'product-detail' object.pk %}" class="myInput" style="display:none;">
   <button onclick="thisFunction()">Copy link to clipboard</button>
@@ -429,7 +427,7 @@ function thisFunction() {
         {% for each_comment in comments %}
         <div class="comment">
             <div class="info">
-                <p style="font-size: 15px; color: red;">{{ each_comment.con }}<span>   <span>at {{ each_comment.created_on }}</span></p>
+                <p style="font-size: 15px; color: red;">{{ each_comment.author }}<span>   <span>at {{ each_comment.created_on }}</span></p>
                 <p style="font-size: 15px;">{{ each_comment.comment }}</p>
             </div>   
         </div>

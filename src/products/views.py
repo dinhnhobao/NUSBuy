@@ -74,7 +74,24 @@ def products_list(request):
     if not request.GET._mutable:
         request.GET._mutable = True
     products = Product.objects.get_queryset().order_by('id')
-        
+    
+    EXCLUSIVE_QUERIES = [
+        'title',
+        'pub_date',
+        'view_count',
+        'price_increasing',
+        'price_descending',
+        'condition_used',
+        'condition_new',
+        'multiple',
+        'unique',
+    ]
+    count = 0
+    for query in EXCLUSIVE_QUERIES:
+        if query in request.GET:
+            count +=1
+    
+    print(count, '-number of queries')
     #sorting
     if 'title' in request.GET:
         products = products.order_by('title')
@@ -118,7 +135,9 @@ def products_list(request):
     ###Preserving Query Parameters When Using Paginator
     get_dict_copy = request.GET.copy()
     params = get_dict_copy.pop('page', True) and get_dict_copy.urlencode()
-    params = '&' + params if params else ''
+    print('----------')
+    print(params)
+    print('----------')
 
     number_of_total_items = Product.objects.count()
     context = {'posts': products, 'params': params, 'search_term': search_term,
@@ -216,7 +235,6 @@ class PostCategory(ListView):
         my_category = get_object_or_404(Category, pk = self.kwargs['pk']) #get category from url
         context = super(PostCategory, self).get_context_data(**kwargs)
         context["this_category"] = my_category #add category to context dictionary
-        print(context)
         return context
 
 #report a bug view

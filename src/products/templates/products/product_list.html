@@ -123,13 +123,17 @@ select {
 }
 </style>
 
-<form method = "GET">
-     <input
+<form class="form-inline my-2 my-lg-2">
+     <input 
+          class="form-control mr-sm-2" 
+          type="search" 
+          placeholder="Search.." 
+          aria-label="Search"
           name = 'search_term'
-          value = "{{request.GET.search_term}}"
-          placeholder= "search..">
-     <button id= "seek" class = 'btn btn-outline-success my-2 my-sm-0' type = 'submit'><i class="fa fa-search"></i></button>
+          value = ''> <!-- add the input text to url-->
+<button id= "seek" class = 'btn btn-outline-success my-2 my-sm-0' type = 'submit'><i class="fa fa-search"></i></button>
 </form>
+
  
 {% if user.username == 'AnonymousUser' or user.name == 'AnonymousUser' %}
   <div class= "welcome">
@@ -156,6 +160,10 @@ select {
      href='{% url 'product-create' %}'
      ><button style="font-family: Comic Sans MS, cursive, sans-serif; background-color: orange;">CREATE A LISTING</button>
      </a>
+     <a
+     href="{% url 'home' %}"
+     ><button style="font-family: Comic Sans MS, cursive, sans-serif; background-color: blue;">CLEAR ALL SORTING AND FILTERS</button>
+     </a>
      <h5></h5>
 
 <select name="Sort" onchange="location = this.value;">
@@ -163,27 +171,27 @@ select {
     value="">-----------------Sorting------------------
     </option>
      <option
-     value="?title=True"
+     value="?title=True{{params}}"
      >Sort by name
      </option>
 
      <option
-     value="?pub_date=True"
+     value="?pub_date=True{{params}}"
      >Sort by publish date
      </option>
 
      <option
-     value="?view_count=True"
+     value="?view_count=True{{params}}"
      >Sort by view count
      </option>
 
      <option
-     value="?price_increasing=True"
+     value="?price_increasing=True{{params}}"
      >Sort by price: low to high
      </option>
 
      <option
-     value="?price_descending=True"
+     value="?price_descending=True{{params}}"
      >Sort by price: high to low
      </option>
  
@@ -191,22 +199,22 @@ select {
     value="">------------------Filters-------------------
     </option>
      <option
-     value="?condition_used=True"
+     value="?condition_used=True{{params}}"
      >Only see items already used
      </option>
 
      <option
-     value="?condition_new=True"
+     value="?condition_new=True{{params}}"
      >Only see new items
      </option>
 
      <option
-     value="?multiple=True"
+     value="?multiple=True{{params}}"
      >See items with multiple quantities
      </option>
 
      <option
-     value="?unique=True"
+     value="?unique=True{{params}}"
      >See items with one quantity only
      </option>
 </select>

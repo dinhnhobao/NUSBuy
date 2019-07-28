@@ -429,7 +429,7 @@ function thisFunction() {
         {% for each_comment in comments %}
         <div class="comment">
             <div class="info">
-                <p style="font-size: 15px; color: red;">{{ each_comment.con }}<span>   <span>at {{ each_comment.created_on }}</span></p>
+                <p style="font-size: 15px; color: red;">{{ each_comment.author }}<span>   <span>at {{ each_comment.created_on }}</span></p>
                 <p style="font-size: 15px;">{{ each_comment.comment }}</p>
             </div>   
         </div>
