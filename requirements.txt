@@ -41,7 +41,7 @@ msgpack==0.6.1
 mysqlclient==1.4.2.post1
 numpy==1.15.0+mkl
 oauthlib==3.0.1
-oic==1.0.1
+oic==1.2.1
 olefile==0.45.1
 packaging==19.0
 Pillow==6.2.0
