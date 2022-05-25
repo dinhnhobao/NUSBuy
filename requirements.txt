@@ -56,7 +56,7 @@ pycryptodomex==3.8.2
 pyflakes==2.1.1
 PyHamcrest==1.9.0
 pyjwkest==1.4.2
-PyJWT==1.7.1
+PyJWT==2.4.0
 pylint==2.3.1
 pylint-django==2.0.9
 pylint-plugin-utils==0.5
